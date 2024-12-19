@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &240085793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7639633495292206349, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+  m_PrefabInstance: {fileID: 500021570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &500021570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577553947}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalRotation: {x: 0.47185796, y: 0, z: 0, w: 0.8816746}
   m_LocalPosition: {x: 0, y: 13, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -281,28 +286,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
+  ShowDebugText: 0
+  ShowCameraFrustum: 1
+  IgnoreTimeScale: 0
+  WorldUpOverride: {fileID: 0}
+  ChannelMask: -1
+  UpdateMethod: 2
+  BlendUpdateMethod: 1
+  LensModeOverride:
+    Enabled: 0
+    DefaultMode: 2
+  DefaultBlend:
+    Style: 1
+    Time: 2
+    CustomCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  CustomBlends: {fileID: 0}
 --- !u!1 &1116839847
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1116839848}
     m_Modifications:
+    - target: {fileID: 4565419250059138613, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: TrackerSettings.BindingMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5268426141664467705, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
       propertyPath: m_Name
       value: Follow Camera
@@ -394,11 +401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7698033475143453281, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8660254
+      value: 0.8816746
       objectReference: {fileID: 0}
     - target: {fileID: 7698033475143453281, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0.47185794
       objectReference: {fileID: 0}
     - target: {fileID: 7698033475143453281, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -420,7 +427,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7877684254150950520, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877684254150950520, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: Priority.m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877684254150950520, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: m_LegacyPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877684254150950520, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877684254150950520, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 240085793}
+    m_RemovedComponents:
+    - {fileID: 4822541470231534684, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+    - {fileID: 7784160282449641038, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
+    - {fileID: 866001757470290963, guid: d505a039fe2bc1845b9a883bd2c23b4c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
