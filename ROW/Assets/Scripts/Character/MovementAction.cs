@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public class MovementAction : MonoBehaviour
 {
     [SerializeField] private float verticalPull = -5f;
-    [SerializeField] private float moveSpeed = 6.0f;
+    [SerializeField] private float moveSpeed = 4.0f;
 
     private Player _player;
     private CharacterController _characterController;

@@ -386,9 +386,13 @@
 -analyzer:"C:/Users/USER/Unity/Editor/6000.0.31f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Users/USER/Unity/Editor/6000.0.31f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Users/USER/Unity/Editor/6000.0.31f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scripts/Character/FireAction.cs"
 "Assets/Scripts/Character/MovementAction.cs"
 "Assets/Scripts/Character/Player.cs"
 "Assets/Scripts/Character/PlayerAction.cs"
+"Assets/Scripts/Gun/Bullet.cs"
+"Assets/Scripts/Gun/BulletPoolManager.cs"
+"Assets/Scripts/Gun/Gun.cs"
 "Assets/Scripts/Input/InputReader.cs"
 "Assets/Settings/Input/GameInput.cs"
 -langversion:9.0
