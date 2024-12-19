@@ -15,8 +15,6 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Fire");
-
         GameObject bullet = _bulletPool.GetBullet();
         bullet.transform.position = _firePoint.position;
         bullet.transform.rotation = _firePoint.rotation;

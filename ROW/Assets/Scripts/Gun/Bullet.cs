@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("충돌해서 총알 반환");
         _bulletPool.ReturnBullet(this.gameObject);
     }
 

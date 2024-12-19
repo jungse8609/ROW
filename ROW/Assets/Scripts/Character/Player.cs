@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     {
         _inputReader.MoveEvent += OnMovement;
         _inputReader.FireEvent += OnFire;
+        _inputReader.FireCancelEvent += OnFireCancel;
         _inputReader.ReloadEvent += OnReload;
     }
 
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     {
         _inputReader.MoveEvent -= OnMovement;
         _inputReader.FireEvent -= OnFire;
+        _inputReader.FireCancelEvent += OnFireCancel;
         _inputReader.ReloadEvent -= OnReload;
     }
 
@@ -55,6 +57,11 @@ public class Player : MonoBehaviour
     private void OnFire()
     {
         fireInput = true;
+    }
+
+    private void OnFireCancel()
+    {
+        fireInput = false;
     }
 
     private void OnReload()
