@@ -8,6 +8,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     // Gameplay
     public event UnityAction<Vector2> MoveEvent = delegate { };
     public event UnityAction FireEvent = delegate { };
+    public event UnityAction FireCancelEvent = delegate { };
     public event UnityAction ReloadEvent = delegate { };
 
     // Menues
@@ -43,6 +44,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     {
         if (context.phase == InputActionPhase.Performed)
             FireEvent.Invoke();
+        else if (context.phase == InputActionPhase.Canceled)
+            FireCancelEvent.Invoke();
     }
 
     public void OnReload(InputAction.CallbackContext context)
