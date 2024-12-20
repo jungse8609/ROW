@@ -390,10 +390,13 @@
 "Assets/Scripts/Character/MovementAction.cs"
 "Assets/Scripts/Character/Player.cs"
 "Assets/Scripts/Character/PlayerAction.cs"
+"Assets/Scripts/Droppable/Droppable.cs"
 "Assets/Scripts/Gun/Bullet.cs"
 "Assets/Scripts/Gun/BulletPoolManager.cs"
 "Assets/Scripts/Gun/Gun.cs"
 "Assets/Scripts/Input/InputReader.cs"
+"Assets/Scripts/Transform/Bouncer.cs"
+"Assets/Scripts/Transform/Rotator.cs"
 "Assets/Settings/Input/GameInput.cs"
 -langversion:9.0
 /deterministic

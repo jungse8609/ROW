@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
         _bulletPool = GetComponent<BulletPoolManager>();
     }
 
-    public void Fire()
+    public virtual void Fire()
     {
         GameObject bullet = _bulletPool.GetBullet();
         bullet.transform.position = _firePoint.position;

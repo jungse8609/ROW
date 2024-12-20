@@ -4,7 +4,6 @@ public class FireAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
 
-
     private const float COOLTIME = 0.2f;
     private float _timer = 0.0f;
     private Gun _gun;
