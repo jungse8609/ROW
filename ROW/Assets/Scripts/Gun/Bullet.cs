@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float _speed = 4.0f;
-    private float _damage = 2.0f;
+    private float _speed = 0.0f;
+    private float _damage = 0.0f;
     private BulletPoolManager _bulletPool = default;
 
     public void InitBullet(BulletPoolManager bulletPool, float speed, float damage)
