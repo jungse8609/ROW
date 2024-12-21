@@ -170,8 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0e61b9d5c90ad46bd96d47b3ae4e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalPull: -5
-  moveSpeed: 4
+  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
 --- !u!114 &1867928965802153033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunObject: {fileID: 5228665580495923620}
+  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
 --- !u!114 &2820781393164964602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunObject: {fileID: 5228665580495923620}
+  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
 --- !u!1001 &6413068382173995135
 PrefabInstance:
   m_ObjectHideFlags: 0

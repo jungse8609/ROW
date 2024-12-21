@@ -123,9 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff3e83ffc8691f4a97b092713249cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
   _firePoint: {fileID: 8115220152803900029}
-  _bulletSpeed: 10
-  _bulletDamage: 5
+  _maxBulletCount: 12
+  _currentBulletCount: 0
 --- !u!114 &2586260737797496312
 MonoBehaviour:
   m_ObjectHideFlags: 0

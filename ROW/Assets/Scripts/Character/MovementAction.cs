@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MovementAction : MonoBehaviour
 {
-    [SerializeField] private float verticalPull = -5f;
-    [SerializeField] private float moveSpeed = 4.0f;
+    [SerializeField] private PlayerStatSO _playerStat;
 
     private Player _player;
     private CharacterController _characterController;
+    private const float VERTICAL_GRAVITY = -5f;
 
     private void Awake()
     {
@@ -31,8 +30,8 @@ public class MovementAction : MonoBehaviour
 
     private void Move()
     {
-        _player.movementVector.x = _player.movementInput.x * moveSpeed;
-        _player.movementVector.z = _player.movementInput.z * moveSpeed;
+        _player.movementVector.x = _player.movementInput.x * _playerStat.MoveSpeed;
+        _player.movementVector.z = _player.movementInput.z * _playerStat.MoveSpeed;
 
         _characterController.Move(_player.movementVector * Time.deltaTime);
         _player.movementVector = _characterController.velocity;
@@ -40,7 +39,7 @@ public class MovementAction : MonoBehaviour
 
     private void GroundGravity()
     {
-        _player.movementVector.y = verticalPull;
+        _player.movementVector.y = VERTICAL_GRAVITY;
     }
 
     private void Rotate()

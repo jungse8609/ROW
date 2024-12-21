@@ -4,13 +4,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
 
+    [HideInInspector] public Vector3 movementInput;
+    [HideInInspector] public Vector3 movementVector;
+    [HideInInspector] public bool fireInput;
+    [HideInInspector] public bool reloadInput;
+
     private Vector2 _inputVector; // x : x movement, y : z movement
     private float _previousSpeed;
-
-    public Vector3 movementInput;
-    public Vector3 movementVector;
-    public bool fireInput;
-    public bool reloadInput;
 
     private void OnEnable()
     {
