@@ -1,13 +1,19 @@
 using UnityEngine;
 
-public class Droppable : MonoBehaviour
+public abstract class Droppable : MonoBehaviour
 {
+    public enum DropType { Stat, Weapon };
+
+    protected DropType type = default;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("아이템 획득인데 이걸 경ㅇ웨 따라 나눠야 하지 않을까 체력템이나 총으로");
             gameObject.SetActive(false);
+            OnTriggerEvent();
         }
     }
+
+    protected abstract void OnTriggerEvent();
 }
