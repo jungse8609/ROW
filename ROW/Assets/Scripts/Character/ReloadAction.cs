@@ -3,6 +3,7 @@ using UnityEngine;
 public class ReloadAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
+    [SerializeField] private PlayerStatSO _playerStat = default;
 
     private Gun _gun;
     private Player _player;

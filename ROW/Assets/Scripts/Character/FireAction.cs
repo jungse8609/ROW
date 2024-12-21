@@ -3,6 +3,7 @@ using UnityEngine;
 public class FireAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
+    [SerializeField] private PlayerStatSO _playerStat = default;
 
     private Gun _gun;
     private Player _player;
@@ -30,7 +31,7 @@ public class FireAction : MonoBehaviour
         if (_player.fireInput && _bulletTimer <= 0.0f)
         {
             _gun.Fire();
-            _bulletTimer = _gun.BulletCooltime;
+            _bulletTimer = _playerStat.BulletCooltime;
         }
     }
 }
