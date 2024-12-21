@@ -4,11 +4,10 @@ public class FireAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
 
-    private const float COOLTIME = 0.2f;
-    private float _timer = 0.0f;
     private Gun _gun;
     private Player _player;
 
+    private float _bulletTimer = 0.0f;
 
     private void Awake()
     {
@@ -23,15 +22,15 @@ public class FireAction : MonoBehaviour
 
     private void OnUpdate()
     {
-        if (_timer > 0)
+        if (_bulletTimer > 0)
         {
-            _timer -= Time.deltaTime;
+            _bulletTimer -= Time.deltaTime;
         }
 
-        if (_player.fireInput && _timer <= 0.0f)
+        if (_player.fireInput && _bulletTimer <= 0.0f)
         {
             _gun.Fire();
-            _timer = COOLTIME;
+            _bulletTimer = _gun.BulletCooltime;
         }
     }
 }
