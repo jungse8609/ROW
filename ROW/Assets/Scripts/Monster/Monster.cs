@@ -3,10 +3,13 @@ using UnityEngine.AI; // NavMeshAgent ��� �� �ʿ�
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] private MonsterStatSO _monsterStat = default;
+    [SerializeField] protected MonsterStatSO _monsterStat = default;
+
+    protected MonsterSpawner _monsterPool = default;
 
     private Transform playerTransform;
     private NavMeshAgent navAgent; // NavMeshAgent ������Ʈ
+    
 
     private void Awake()
     {
@@ -15,6 +18,11 @@ public class Monster : MonoBehaviour
         {
             Debug.LogError("Monster has no nav mesh!");
         }
+    }
+
+    public void InitBullet(MonsterSpawner monsterPool)
+    {
+        _monsterPool = monsterPool;
     }
 
     private void OnEnable()
@@ -40,30 +48,19 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (playerTransform == null || navAgent == null) return;
 
         navAgent.SetDestination(playerTransform.position);
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         _monsterStat.CurrentHealth -= damage;
         if (_monsterStat.CurrentHealth <= 0)
         {
-            gameObject.SetActive(false);
-        }
-    }
-
-     private void OnTriggerEnter(Collider other)
-    {
-        // 충돌한 객체가 "Bullet" 태그를 가진 경우
-        if (other.CompareTag("Bullet"))
-        {
-            // 총알에 맞았을 때 데미지를 받음
-            TakeDamage(1);  // 총알이 1의 데미지를 준다고 가정 (필요시 수정)
-            Destroy(other.gameObject);  // 충돌한 총알을 삭제
+            _monsterPool.ReturnMonster(this.gameObject);
         }
     }
 }

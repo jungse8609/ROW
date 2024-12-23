@@ -8,8 +8,10 @@ public class BossMonster : Monster
     private Transform _playerTransform;
     private float _teleportTimer = 0.0f;
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         _teleportTimer -= Time.deltaTime;
         TeleportIfFar();
     }
@@ -23,6 +25,15 @@ public class BossMonster : Monster
         {
             transform.position = _playerTransform.position + (Vector3.right * 2.0f); // 플레이어 근처로 이동
             _teleportTimer = _teleportCooldown;
+        }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        _monsterStat.CurrentHealth -= damage;
+        if (_monsterStat.CurrentHealth <= 0)
+        {
+            _monsterPool.ReturnMonster(this.gameObject);
         }
     }
 }
