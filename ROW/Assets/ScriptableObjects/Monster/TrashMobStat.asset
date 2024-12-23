@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: TrashMobStat
   m_EditorClassIdentifier: 
   MoveSpeed: 2
-  AttackRange: 1.5
+  AttackDamage: 0.02
+  AttackRange: 0.5
   MaxHealth: 10
+  CurrentHealth: 10

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class HpManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class HpManager : MonoBehaviour
 
     private float _regenTimer = 0f;       // 자동 회복 주기 체크용
     private float _damageDelayTimer = 0f; // 피격 후 회복 지연 타이머
+
+    private void OnEnable()
+    {
+        _playerStat.CurrentHp = _playerStat.MaxHp;
+    }
 
     private void Start()
     {
@@ -72,8 +78,18 @@ public class HpManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망!");
+
         // 사망 로직 (오브젝트 비활성화, 게임 오버, 씬 전환 등)을 여기에 추가
         // gameObject.SetActive(false);
         // or SceneManager.LoadScene("GameOverScene");
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Monster"))
+        {
+            Monster monster = other.GetComponent<Monster>();
+            GetDamaged(monster.AttackDamage());
+        }
     }
 }
