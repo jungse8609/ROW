@@ -11,9 +11,9 @@ public abstract class Droppable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            OnTriggerEvent();
+            OnTriggerEvent(other);
         }
     }
 
-    protected abstract void OnTriggerEvent();
+    protected abstract void OnTriggerEvent(Collider other);
 }

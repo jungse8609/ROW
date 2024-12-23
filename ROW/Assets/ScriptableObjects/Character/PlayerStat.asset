@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03e8723beaef1b4497e9de4bfa3657e, type: 3}
   m_Name: PlayerStat
   m_EditorClassIdentifier: 
+  MaxHp: 10
   MoveSpeed: 5
   BulletSpeed: 4
   BulletDamage: 10
-  BulletCooltime: 1
+  BulletCooltime: 0.2
   ReloadCooltime: 2
+  CurrentHp: 10
