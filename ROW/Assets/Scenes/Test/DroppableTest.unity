@@ -132,10 +132,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 953935849158833253, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: _firePoint
-      value: 
-      objectReference: {fileID: 1588785480}
     - target: {fileID: 7639633495292206349, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -178,10 +174,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -651,11 +643,6 @@ Transform:
   - {fileID: 1853859407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1588785480 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2909543116911581698, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-  m_PrefabInstance: {fileID: 500021570}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1639089680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3729243339368267371, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.44
+      value: 3.08
       objectReference: {fileID: 0}
     - target: {fileID: 3729243339368267371, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
       propertyPath: m_LocalRotation.w

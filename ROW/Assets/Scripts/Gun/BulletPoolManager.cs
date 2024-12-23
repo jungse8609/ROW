@@ -4,7 +4,7 @@ using UnityEngine;
 public class BulletPoolManager : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab; // 총알 프리팹
-    [SerializeField] private int _poolSize = 10; // 초기 풀 크기
+    [SerializeField] private int _poolSize = 20; // 초기 풀 크기
 
     private Queue<GameObject> _bulletPool = new Queue<GameObject>();
 
@@ -17,7 +17,7 @@ public class BulletPoolManager : MonoBehaviour
     {
         for (int i = 0; i < _poolSize; i++)
         {
-            GameObject bullet = Instantiate(_bulletPrefab);
+            GameObject bullet = Instantiate(_bulletPrefab); 
             bullet.SetActive(false);
             _bulletPool.Enqueue(bullet);
         }

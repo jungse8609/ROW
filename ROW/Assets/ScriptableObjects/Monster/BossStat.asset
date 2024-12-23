@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03e8723beaef1b4497e9de4bfa3657e, type: 3}
-  m_Name: PlayerStat
+  m_Script: {fileID: 11500000, guid: 6342f22c0342386479a27df4e22ddb08, type: 3}
+  m_Name: BossStat
   m_EditorClassIdentifier: 
-  MaxHp: 10
-  RegenAmount: 1
-  MoveSpeed: 5
-  BulletSpeed: 15
-  BulletDamage: 2
-  BulletCooltime: 0.2
-  ReloadCooltime: 2
-  CurrentHp: 10
+  MoveSpeed: 2
+  AttackRange: 1.5
+  MaxHealth: 10
