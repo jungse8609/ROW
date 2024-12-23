@@ -37,7 +37,11 @@ public class Gun : MonoBehaviour
         // Create Bullet Prefab
         GameObject bullet = _bulletPool.GetBullet();
         bullet.transform.position = _firePoint.position;
-        bullet.transform.rotation = _firePoint.rotation;
+
+        // firePoint의 현재 회전 값을 Euler Angles로 가져옴
+        Vector3 fireRotation = _firePoint.eulerAngles;
+        fireRotation.x = fireRotation.z = 0f;
+        bullet.transform.rotation = Quaternion.Euler(fireRotation);
 
         TrailRenderer trail = bullet.GetComponent<TrailRenderer>();
         if (trail != null)

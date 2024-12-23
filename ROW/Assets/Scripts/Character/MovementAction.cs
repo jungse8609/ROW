@@ -5,12 +5,14 @@ public class MovementAction : MonoBehaviour
     [SerializeField] private PlayerStatSO _playerStat;
 
     private Player _player;
+    private Animator _anim;
     private CharacterController _characterController;
     private const float VERTICAL_GRAVITY = -5f;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _anim = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -35,6 +37,15 @@ public class MovementAction : MonoBehaviour
 
         _characterController.Move(_player.movementVector * Time.deltaTime);
         _player.movementVector = _characterController.velocity;
+
+        if (_player.movementVector.sqrMagnitude <= 0.02f)
+            _anim.SetBool("isWalking", false);
+        else
+        {
+            _anim.SetBool("isWalking", true);
+            Debug.Log("걷기 애니메이션 ");
+        }
+            
     }
 
     private void GroundGravity()
