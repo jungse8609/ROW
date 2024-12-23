@@ -15,8 +15,8 @@ MonoBehaviour:
   MaxHp: 10
   RegenAmount: 1
   MoveSpeed: 5
-  BulletSpeed: 4
+  BulletSpeed: 15
   BulletDamage: 10
   BulletCooltime: 0.2
   ReloadCooltime: 2
-  CurrentHp: 4
+  CurrentHp: 10
