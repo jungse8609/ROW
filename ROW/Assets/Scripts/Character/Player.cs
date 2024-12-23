@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
 
     private Vector2 _inputVector; // x : x movement, y : z movement
     private float _previousSpeed;
+    private Animator _anim;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
 
     private void OnEnable()
     {

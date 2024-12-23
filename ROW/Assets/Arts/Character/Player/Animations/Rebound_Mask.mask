@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rebound_Mask
+  m_Mask: 00000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: left_leg
+    m_Weight: 1
+  - m_Path: left_shoes
+    m_Weight: 1
+  - m_Path: leg
+    m_Weight: 1
+  - m_Path: leg/body
+    m_Weight: 1
+  - m_Path: leg/body/gun
+    m_Weight: 1
+  - m_Path: leg/body/leg_LU
+    m_Weight: 1
+  - m_Path: leg/body/leg_LU/leg_LD
+    m_Weight: 1
+  - m_Path: leg/body/leg_LU/leg_LD/foot_L
+    m_Weight: 1
+  - m_Path: leg/body/leg_LU/leg_LD/foot_L/toe_L
+    m_Weight: 1
+  - m_Path: leg/body/leg_RU
+    m_Weight: 1
+  - m_Path: leg/body/leg_RU/leg_RD
+    m_Weight: 1
+  - m_Path: leg/body/leg_RU/leg_RD/foot_R
+    m_Weight: 1
+  - m_Path: leg/body/leg_RU/leg_RD/foot_R/toe_R
+    m_Weight: 1
+  - m_Path: leg/ctrl_L
+    m_Weight: 1
+  - m_Path: leg/ctrl_R
+    m_Weight: 1
+  - m_Path: leg/pole_L
+    m_Weight: 1
+  - m_Path: leg/pole_R
+    m_Weight: 1
+  - m_Path: right_reg
+    m_Weight: 1
+  - m_Path: right_shoes
+    m_Weight: 1
