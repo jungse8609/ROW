@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerStatSO : ScriptableObject
 {
     public float MaxHp = 10.0f;
+    public float RegenAmount = 0.2f;
     public float MoveSpeed = 5.0f;
 
     public float BulletSpeed = 4.0f;
@@ -11,7 +12,7 @@ public class PlayerStatSO : ScriptableObject
     public float BulletCooltime = 1.0f;
     public float ReloadCooltime = 2.0f;
 
-    public float CurrentHp = 0.0f;    
+    public float CurrentHp = 0.0f;
 
     private void Awake()
     {

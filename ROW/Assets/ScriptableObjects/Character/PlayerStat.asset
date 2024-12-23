@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStat
   m_EditorClassIdentifier: 
   MaxHp: 10
+  RegenAmount: 1
   MoveSpeed: 5
   BulletSpeed: 4
   BulletDamage: 10
   BulletCooltime: 0.2
   ReloadCooltime: 2
-  CurrentHp: 10
+  CurrentHp: 4
