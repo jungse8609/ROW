@@ -21,7 +21,7 @@ public class BossMonster : Monster
         float distance = Vector3.Distance(transform.position, _playerTransform.position);
         if (distance > _teleportDistance)
         {
-            transform.position = _playerTransform.position + (Vector3.right * 2.0f); // ÇÃ·¹ÀÌ¾î ±ÙÃ³·Î ÀÌµ¿
+            transform.position = _playerTransform.position + (Vector3.right * 2.0f); // í”Œë ˆì´ì–´ ê·¼ì²˜ë¡œ ì´ë™
             _teleportTimer = _teleportCooldown;
         }
     }

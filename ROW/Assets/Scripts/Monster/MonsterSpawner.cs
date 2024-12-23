@@ -6,8 +6,8 @@ public class MonsterSpawner : MonoBehaviour
     [Header("Pool Setting")]
     [SerializeField] private GameObject _monsterPrefab;
     [SerializeField] private GameObject _bossPrefab;
-    [SerializeField] private int _monsterPoolSize = 20; // ÃÊ±â Ç® Å©±â
-    [SerializeField] private int _bossPoolSize = 3; // ÃÊ±â Ç® Å©±â
+    [SerializeField] private int _monsterPoolSize = 20; // ì´ˆê¸° í’€ í¬ê¸°
+    [SerializeField] private int _bossPoolSize = 3; // ì´ˆê¸° í’€ í¬ê¸°
 
     [Header("Spawn Setting")]
     [SerializeField] private Transform[] _spawnPoints;
@@ -64,21 +64,52 @@ public class MonsterSpawner : MonoBehaviour
             int spawnIndex1 = Random.Range(0, _spawnPoints.Length);
             int spawnIndex2;
             
-            // °°Àº ÀÎµ¦½º°¡ ¼±ÅÃµÇÁö ¾Êµµ·Ï º¸Àå
+            // ê°™ì€ ì¸ë±ìŠ¤ê°€ ì„ íƒë˜ì§€ ì•Šë„ë¡ ë³´ì¥
             do
             {
                 spawnIndex2 = Random.Range(0, _spawnPoints.Length);
             } while (spawnIndex1 == spawnIndex2);
 
-            // µÎ À§Ä¡¿¡¼­ ¸ó½ºÅÍ¸¦ ¼ÒÈ¯
+            if (_spawnPoints.Length > 0)
+            {
+                // ìŠ¤í° í¬ì¸íŠ¸ ì¤‘ë³µì„ ë°©ì§€í•˜ê¸° ìœ„í•´ ì¸ë±ìŠ¤ë¥¼ ì„ìŒ
+                int[] shuffledIndices = ShuffleIndices(_spawnPoints.Length);
+
+                // ìµœëŒ€ xë§ˆë¦¬ì˜ ëª¬ìŠ¤í„°ë¥¼ ì†Œí™˜ (ìŠ¤í°í¬ì¸íŠ¸ê°€ ë¶€ì¡±í•˜ë©´ ìŠ¤í°í¬ì¸íŠ¸ ê°œìˆ˜ë§Œí¼ë§Œ ì†Œí™˜)
+                int spawnCount = Mathf.Min(2, _spawnPoints.Length);
+                for (int i = 0; i < spawnCount; i++)
+                {
+                    Instantiate(_monsterPrefab, _spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
+                }
+            }
+
+            // ë‘ ìœ„ì¹˜ì—ì„œ ëª¬ìŠ¤í„°ë¥¼ ì†Œí™˜
             Instantiate(_monsterPrefab, _spawnPoints[spawnIndex1].position, Quaternion.identity);
             Instantiate(_monsterPrefab, _spawnPoints[spawnIndex2].position, Quaternion.identity);
         }
 
-        if (_waveCount % _BOSS_WAVE == 0) // 5¹øÂ° ¿şÀÌºê¸¶´Ù º¸½º ¼ÒÈ¯
+        if (_waveCount % _BOSS_WAVE == 0) // 5ë²ˆì§¸ ì›¨ì´ë¸Œë§ˆë‹¤ ë³´ìŠ¤ ì†Œí™˜
         {
             Instantiate(_bossPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
         }
+    }
+
+    private int[] ShuffleIndices(int length)
+    {
+        int[] indices = new int[length];
+        for (int i = 0; i < length; i++)
+        {
+            indices[i] = i;
+        }
+
+        // Fisher-Yates ì•Œê³ ë¦¬ì¦˜ìœ¼ë¡œ ë°°ì—´ ì„ê¸°
+        for (int i = length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (indices[i], indices[j]) = (indices[j], indices[i]);
+        }
+
+        return indices;
     }
 
     public GameObject GetMonster()
@@ -91,7 +122,7 @@ public class MonsterSpawner : MonoBehaviour
         }
         else
         {
-            // Ç®¿¡ ³²Àº ÃÑ¾ËÀÌ ¾øÀ¸¸é »õ·Î »ı¼º
+            // í’€ì— ë‚¨ì€ ì´ì•Œì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
             GameObject newMonster = Instantiate(_monsterPrefab);
             newMonster.SetActive(false);
             return newMonster;
@@ -114,7 +145,7 @@ public class MonsterSpawner : MonoBehaviour
         }
         else
         {
-            // Ç®¿¡ ³²Àº ÃÑ¾ËÀÌ ¾øÀ¸¸é »õ·Î »ı¼º
+            // í’€ì— ë‚¨ì€ ì´ì•Œì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
             GameObject newBoss = Instantiate(_bossPrefab);
             newBoss.SetActive(false);
             return newBoss;
