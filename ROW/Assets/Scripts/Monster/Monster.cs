@@ -9,7 +9,6 @@ public class Monster : MonoBehaviour
 
     private Transform playerTransform;
     private NavMeshAgent navAgent; // NavMeshAgent ÄÄÆ÷³ÍÆ®
-    
 
     private void Awake()
     {
@@ -20,7 +19,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void InitBullet(MonsterSpawner monsterPool)
+    public void InitMonster(MonsterSpawner monsterPool)
     {
         _monsterPool = monsterPool;
     }
@@ -62,5 +61,10 @@ public class Monster : MonoBehaviour
         {
             _monsterPool.ReturnMonster(this.gameObject);
         }
+    }
+
+    public float AttackDamage()
+    {
+        return _monsterStat.AttackDamage;
     }
 }

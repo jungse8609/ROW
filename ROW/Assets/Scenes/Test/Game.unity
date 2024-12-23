@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomGun
       objectReference: {fileID: 0}
+    - target: {fileID: 2264400429867151474, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3729243339368267371, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.53
@@ -171,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 6252973043322271960, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
+      propertyPath: _gunPrefab
+      value: 
+      objectReference: {fileID: 8579328847045299654, guid: 14e23631ce074fc4eaab7be6df321bf2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -505,6 +513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Droppable
       objectReference: {fileID: 0}
+    - target: {fileID: 5076830058948890723, guid: eeea808b2a883c44696a04e909e9e545, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -777,6 +789,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5128450463064115503, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018749539695146238, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7639633495292206349, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -820,6 +840,10 @@ PrefabInstance:
     - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
