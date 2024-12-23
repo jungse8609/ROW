@@ -132,30 +132,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 953935849158833253, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: _firePoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3243526636993613348, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: _gunObject
-      value: 
-      objectReference: {fileID: 1860705093}
-    - target: {fileID: 5503462700361946005, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5503462700361946005, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5503462700361946005, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479967768487880270, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: _gunObject
-      value: 
-      objectReference: {fileID: 1860705093}
     - target: {fileID: 7639633495292206349, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -198,10 +174,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8886619749262542579, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1018,11 +990,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853859406}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1860705093 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5128450463064115503, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
-  m_PrefabInstance: {fileID: 500021570}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865949688
 GameObject:
   m_ObjectHideFlags: 0
