@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4573677668455476311}
   - component: {fileID: 1867928965802153033}
   - component: {fileID: 2820781393164964602}
+  - component: {fileID: 8778548451426712234}
+  - component: {fileID: 8492353422202518519}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -199,6 +201,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunObject: {fileID: 5228665580495923620}
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+--- !u!114 &8778548451426712234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886619749262542579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b068514ca1aba5419b107ba38f3cc7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _expCount: 0
+--- !u!114 &8492353422202518519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886619749262542579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5479100885ed7a4d95ca2be3dfcdcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  _regenInterval: 5
+  _regenAmount: 1
+  _regenDelayAfterDamage: 3
 --- !u!1001 &6413068382173995135
 PrefabInstance:
   m_ObjectHideFlags: 0
