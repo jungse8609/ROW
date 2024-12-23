@@ -1,68 +1,28 @@
 using UnityEngine;
 
-public class BossMonster : MonoBehaviour
+public class BossMonster : Monster
 {
-    public float moveSpeed = 1.5f;
-    public float attackRange = 2.5f;
-    public int health = 20;
-    public float teleportCooldown = 10.0f;
+    [SerializeField] private float _teleportCooldown = 5.0f;
+    [SerializeField] private float _teleportDistance = 10.0f;
 
-    private Transform playerTransform;
-    private float teleportTimer = 0.0f;
-
-    private void Start()
-    {
-        playerTransform = GameObject.FindWithTag("Player").transform;
-    }
+    private Transform _playerTransform;
+    private float _teleportTimer = 0.0f;
 
     private void Update()
     {
-        teleportTimer -= Time.deltaTime;
-        MoveTowardsPlayer();
+        _teleportTimer -= Time.deltaTime;
         TeleportIfFar();
-    }
-
-    private void MoveTowardsPlayer()
-    {
-        if (playerTransform == null) return;
-
-        float distance = Vector3.Distance(transform.position, playerTransform.position);
-        if (distance > attackRange)
-        {
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
-        }
     }
 
     private void TeleportIfFar()
     {
-        if (teleportTimer > 0 || playerTransform == null) return;
+        if (_teleportTimer > 0 || _playerTransform == null) return;
 
-        float distance = Vector3.Distance(transform.position, playerTransform.position);
-        if (distance > 10.0f)
+        float distance = Vector3.Distance(transform.position, _playerTransform.position);
+        if (distance > _teleportDistance)
         {
-            transform.position = playerTransform.position + (Vector3.right * 2.0f); // �÷��̾� ��ó�� �̵�
-            teleportTimer = teleportCooldown;
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-     private void OnTriggerEnter(Collider other)
-    {
-        // 충돌한 객체가 "Bullet" 태그를 가진 경우
-        if (other.CompareTag("Bullet"))
-        {
-            // 총알에 맞았을 때 데미지를 받음
-            TakeDamage(1);  // 총알이 1의 데미지를 준다고 가정 (필요시 수정)
-            Destroy(other.gameObject);  // 충돌한 총알을 삭제
+            transform.position = _playerTransform.position + (Vector3.right * 2.0f); // 플레이어 근처로 이동
+            _teleportTimer = _teleportCooldown;
         }
     }
 }

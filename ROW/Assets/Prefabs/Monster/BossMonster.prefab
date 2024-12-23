@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4642268373545385167}
   - component: {fileID: 1867303686666927383}
   - component: {fileID: 7382847111975561680}
-  - component: {fileID: -9116968910919368853}
   - component: {fileID: -4185561966724964785}
+  - component: {fileID: -9116968910919368853}
+  - component: {fileID: 6160626849538616045}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: BossMonster
@@ -112,22 +113,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-9116968910919368853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2718984611726280719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 312aa322593dd9a42a711f9c900f57b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1.5
-  attackRange: 2.5
-  health: 500
-  teleportCooldown: 10
 --- !u!54 &-4185561966724964785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,3 +140,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-9116968910919368853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718984611726280719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312aa322593dd9a42a711f9c900f57b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterStat: {fileID: 11400000, guid: f324aad8ac0cf914c9619131233f58da, type: 2}
+  _teleportCooldown: 5
+  _teleportDistance: 10
+--- !u!195 &6160626849538616045
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718984611726280719}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

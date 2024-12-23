@@ -1,41 +1,58 @@
 using UnityEngine;
+using UnityEngine.AI; // NavMeshAgent 사용 시 필요
 
 public class Monster : MonoBehaviour
 {
-    public float moveSpeed = 2.0f;
-    public float attackRange = 1.5f;
-    public int health = 10;
+    [SerializeField] private MonsterStatSO _monsterStat = default;
 
     private Transform playerTransform;
+    private NavMeshAgent navAgent; // NavMeshAgent 컴포넌트
+
+    private void Awake()
+    {
+        navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent == null )
+        {
+            Debug.LogError("Monster has no nav mesh!");
+        }
+    }
+
+    private void OnEnable()
+    {
+        _monsterStat.CurrentHealth = _monsterStat.MaxHealth;
+    }
 
     private void Start()
     {
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        // Player 태그를 가진 오브젝트 찾기
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            playerTransform = playerObject.transform;
+        }
+
+        // NavMeshAgent 기본 세팅
+        if (navAgent != null)
+        {
+            // 이동 속도, 멈출 거리 설정
+            navAgent.speed = _monsterStat.MoveSpeed;
+            navAgent.stoppingDistance = _monsterStat.AttackRange;
+        }
     }
 
     private void Update()
     {
-        MoveTowardsPlayer();
+        if (playerTransform == null || navAgent == null) return;
+
+        navAgent.SetDestination(playerTransform.position);
     }
 
-    private void MoveTowardsPlayer()
+    public void TakeDamage(float damage)
     {
-        if (playerTransform == null) return;
-
-        float distance = Vector3.Distance(transform.position, playerTransform.position);
-        if (distance > attackRange)
+        _monsterStat.CurrentHealth -= damage;
+        if (_monsterStat.CurrentHealth <= 0)
         {
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

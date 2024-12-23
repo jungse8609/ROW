@@ -1,55 +1,99 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab;
-    public GameObject bossPrefab;
-    public Transform[] spawnPoints;
+    [Header("Pool Setting")]
+    [SerializeField] private GameObject _monsterPrefab;
+    [SerializeField] private GameObject _bossPrefab;
+    [SerializeField] private int _monsterPoolSize = 20; // 초기 풀 크기
+    [SerializeField] private int _bossPoolSize = 3; // 초기 풀 크기
 
-    public float spawnInterval = 5.0f; // 몬스터 스폰 간격 (초단위)
-    private float spawnTimer;
+    [Header("Spawn Setting")]
+    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private float _spawnInterval = 5.0f;
 
-    private int waveCount = 0;
-    public int mspawncount = 2; // 한 웨이브당 소환할 몬스터 수 (x값)
+    // Spawn variables
+    private float _spawnTimer;
+    private int _waveCount = 0;
+    private int _BOSS_WAVE = 5;
+
+    // Pool variables
+    private Queue<GameObject> _monsterPool = new Queue<GameObject>();
+    private Queue<GameObject> _bossPool = new Queue<GameObject>();
+
+    private void Awake()
+    {
+        InitializePool();
+    }
+
+    private void InitializePool()
+    {
+        for (int i = 0; i < _monsterPoolSize; i++)
+        {
+            GameObject bullet = Instantiate(_monsterPrefab);
+            bullet.SetActive(false);
+            _monsterPool.Enqueue(bullet);
+        }
+
+        for (int i = 0; i < _bossPoolSize; i++)
+        {
+            GameObject bullet = Instantiate(_bossPrefab);
+            bullet.SetActive(false);
+            _bossPool.Enqueue(bullet);
+        }
+    }
 
     private void Update()
     {
-        spawnTimer -= Time.deltaTime; // 매 프레임마다 타이머 감소
+        _spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0)
+        if (_spawnTimer <= 0)
         {
             SpawnMonsterWave();
-            spawnTimer = spawnInterval;
-            if (waveCount % 3 == 0){
-                mspawncount ++;
-            }
+            _spawnTimer = _spawnInterval;
         }
     }
 
     private void SpawnMonsterWave()
     {
-        waveCount++;
-        
-        if (spawnPoints.Length > 0)
-        {
-            // 스폰 포인트 중복을 방지하기 위해 인덱스를 섞음
-            int[] shuffledIndices = ShuffleIndices(spawnPoints.Length);
+        _waveCount += 1;
 
-            // 최대 x마리의 몬스터를 소환 (스폰포인트가 부족하면 스폰포인트 개수만큼만 소환)
-            int spawnCount = Mathf.Min(mspawncount, spawnPoints.Length);
-            for (int i = 0; i < spawnCount; i++)
+        if (_spawnPoints.Length >= 2)
+        {
+            int spawnIndex1 = Random.Range(0, _spawnPoints.Length);
+            int spawnIndex2;
+            
+            // 같은 인덱스가 선택되지 않도록 보장
+            do
             {
-                Instantiate(monsterPrefab, spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
+                spawnIndex2 = Random.Range(0, _spawnPoints.Length);
+            } while (spawnIndex1 == spawnIndex2);
+
+            if (_spawnPoints.Length > 0)
+            {
+                // 스폰 포인트 중복을 방지하기 위해 인덱스를 섞음
+                int[] shuffledIndices = ShuffleIndices(_spawnPoints.Length);
+
+                // 최대 x마리의 몬스터를 소환 (스폰포인트가 부족하면 스폰포인트 개수만큼만 소환)
+                int spawnCount = Mathf.Min(2, _spawnPoints.Length);
+                for (int i = 0; i < spawnCount; i++)
+                {
+                    Instantiate(_monsterPrefab, _spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
+                }
             }
+
+            // 두 위치에서 몬스터를 소환
+            Instantiate(_monsterPrefab, _spawnPoints[spawnIndex1].position, Quaternion.identity);
+            Instantiate(_monsterPrefab, _spawnPoints[spawnIndex2].position, Quaternion.identity);
         }
 
-        if (waveCount % 5 == 0) // 5 웨이브마다 보스 생성
+        if (_waveCount % _BOSS_WAVE == 0) // 5번째 웨이브마다 보스 소환
         {
-            Instantiate(bossPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+            Instantiate(_bossPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
         }
     }
 
-    // 스폰 포인트의 인덱스를 섞어주는 함수
     private int[] ShuffleIndices(int length)
     {
         int[] indices = new int[length];
@@ -66,5 +110,51 @@ public class MonsterSpawner : MonoBehaviour
         }
 
         return indices;
+    }
+
+    public GameObject GetMonster()
+    {
+        if (_monsterPool.Count > 0)
+        {
+            GameObject monster = _monsterPool.Dequeue();
+            monster.SetActive(true);
+            return monster;
+        }
+        else
+        {
+            // 풀에 남은 총알이 없으면 새로 생성
+            GameObject newMonster = Instantiate(_monsterPrefab);
+            newMonster.SetActive(false);
+            return newMonster;
+        }
+    }
+
+    public void ReturnMonster(GameObject monster)
+    {
+        monster.SetActive(false);
+        _monsterPool.Enqueue(monster);
+    }
+
+    public GameObject GetBoss()
+    {
+        if (_monsterPool.Count > 0)
+        {
+            GameObject boss = _bossPool.Dequeue();
+            boss.SetActive(true);
+            return boss;
+        }
+        else
+        {
+            // 풀에 남은 총알이 없으면 새로 생성
+            GameObject newBoss = Instantiate(_bossPrefab);
+            newBoss.SetActive(false);
+            return newBoss;
+        }
+    }
+
+    public void ReturnBoss(GameObject boss)
+    {
+        boss.SetActive(false);
+        _bossPool.Enqueue(boss);
     }
 }
