@@ -12,6 +12,7 @@ public class MonsterSpawner : MonoBehaviour
     [Header("Spawn Setting")]
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _spawnInterval = 5.0f;
+    [SerializeField] private int _mspawncount = 2; // 한 웨이브당 소환할 몬스터 수 (x값)
 
     // Spawn variables
     private float _spawnTimer;
@@ -52,6 +53,11 @@ public class MonsterSpawner : MonoBehaviour
         {
             SpawnMonsterWave();
             _spawnTimer = _spawnInterval;
+
+            if (_waveCount % 3 == 0)
+            {
+                _mspawncount++;
+            }
         }
     }
 
@@ -59,33 +65,17 @@ public class MonsterSpawner : MonoBehaviour
     {
         _waveCount += 1;
 
-        if (_spawnPoints.Length >= 2)
+        if (_spawnPoints.Length > 0)
         {
-            int spawnIndex1 = Random.Range(0, _spawnPoints.Length);
-            int spawnIndex2;
-            
-            // 같은 인덱스가 선택되지 않도록 보장
-            do
-            {
-                spawnIndex2 = Random.Range(0, _spawnPoints.Length);
-            } while (spawnIndex1 == spawnIndex2);
+            // 스폰 포인트 중복을 방지하기 위해 인덱스를 섞음
+            int[] shuffledIndices = ShuffleIndices(_spawnPoints.Length);
 
-            if (_spawnPoints.Length > 0)
+            // 최대 x마리의 몬스터를 소환 (스폰포인트가 부족하면 스폰포인트 개수만큼만 소환)
+            int spawnCount = Mathf.Min(2, _spawnPoints.Length);
+            for (int i = 0; i < spawnCount; i++)
             {
-                // 스폰 포인트 중복을 방지하기 위해 인덱스를 섞음
-                int[] shuffledIndices = ShuffleIndices(_spawnPoints.Length);
-
-                // 최대 x마리의 몬스터를 소환 (스폰포인트가 부족하면 스폰포인트 개수만큼만 소환)
-                int spawnCount = Mathf.Min(2, _spawnPoints.Length);
-                for (int i = 0; i < spawnCount; i++)
-                {
-                    Instantiate(_monsterPrefab, _spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
-                }
+                Instantiate(_monsterPrefab, _spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
             }
-
-            // 두 위치에서 몬스터를 소환
-            Instantiate(_monsterPrefab, _spawnPoints[spawnIndex1].position, Quaternion.identity);
-            Instantiate(_monsterPrefab, _spawnPoints[spawnIndex2].position, Quaternion.identity);
         }
 
         if (_waveCount % _BOSS_WAVE == 0) // 5번째 웨이브마다 보스 소환
