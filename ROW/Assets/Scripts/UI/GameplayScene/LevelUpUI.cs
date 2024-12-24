@@ -6,27 +6,17 @@ using UnityEngine.UI;
 
 public class LevelUpUI : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerStatSO _playerStat;
-
-    [SerializeField]
-    private Button[] _Buttons;
+    [SerializeField] private PlayerStatSO _playerStat;
+    [SerializeField] private Button[] _Buttons;
 
     private int[] m_iGeneratedStat;
 
     public static bool m_isPause = false;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
         m_isPause = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void GenerateRandomLevelupOption()  
@@ -93,6 +83,7 @@ public class LevelUpUI : MonoBehaviour
             Resume_Levelup();
         }
     }
+
     public void Pause_Levelup()
     {
         m_isPause = true;
@@ -100,6 +91,7 @@ public class LevelUpUI : MonoBehaviour
         gameObject.SetActive(true);
         GenerateRandomLevelupOption();
     }
+
     public void Resume_Levelup()
     {
         m_isPause = false;

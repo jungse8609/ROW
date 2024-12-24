@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _poolParent;
 
     [Header("Gun Setting")]
-    [SerializeField] private Transform _firePoint; // �߻� ��ġ
+    [SerializeField] private Transform _firePoint;
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
     [SerializeField] private AudioSource _reloadAudioSource;
@@ -41,7 +41,6 @@ public class Gun : MonoBehaviour
         GameObject bullet = _bulletPool.GetObject();
         bullet.transform.position = _firePoint.position;
 
-        // firePoint�� ���� ȸ�� ���� Euler Angles�� ������
         Vector3 fireRotation = _firePoint.eulerAngles;
         fireRotation.x = fireRotation.z = 0f;
         bullet.transform.rotation = Quaternion.Euler(fireRotation);
@@ -83,6 +82,7 @@ public class Gun : MonoBehaviour
 
         isReloading = false;
     }
+
     private void PlayReloadSound()
     {
         if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)

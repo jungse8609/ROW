@@ -10,8 +10,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private int _expCount = 0;
 
-    [SerializeField]
-    private UnityEvent _event = new UnityEvent();  // LevelUp시 수행을 위해 추가됨
+    [SerializeField] private UnityEvent _levelUpEvent = new UnityEvent();  // LevelUp시 수행을 위해 추가됨
 
     public void GetExp()
     {
@@ -27,10 +26,9 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
-        // randomly choose three attirubtes and display UI
-        _event.Invoke();
+        _levelUpEvent.Invoke();
         _currentLevel += 1;
-        Debug.Log("레벨업");
+        Debug.Log($"레벨업 {_currentLevel} -> {_currentLevel + 1}");
     }
 
     private bool HasEnoughExpForLevelUp()
