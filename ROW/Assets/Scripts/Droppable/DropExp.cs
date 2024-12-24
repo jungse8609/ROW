@@ -2,20 +2,10 @@ using UnityEngine;
 
 public class DropExp : Droppable
 {
-
-
-    private void Awake()
-    {
-        
-    }
-
     protected override void OnTriggerEvent(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            LevelManager levelManager = other.GetComponent<LevelManager>();
-            levelManager.GetExp();
-            gameObject.SetActive(false);
-        }
+        LevelManager levelManager = other.GetComponent<LevelManager>();
+        levelManager.GetExp();
+        Debug.Log("Get Exp");
     }
 }
