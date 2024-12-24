@@ -376,7 +376,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 74c6f556b5e1a4c4c8e5349dc332aee9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -908,6 +908,7 @@ MonoBehaviour:
   _gunObject: {fileID: 5128450463064115503}
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
   _muzzleFlash: {fileID: 0}
+  _fireAudioSource: {fileID: 0}
 --- !u!114 &3243526636993613348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunObject: {fileID: 5128450463064115503}
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  _reloadAudioSource: {fileID: 0}
 --- !u!114 &6873798976890180549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1019,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 74c6f556b5e1a4c4c8e5349dc332aee9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
