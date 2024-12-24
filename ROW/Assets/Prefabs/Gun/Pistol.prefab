@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 5470726861046339801}
   - component: {fileID: 7786471218723040275}
   - component: {fileID: 7615769833660845613}
-  - component: {fileID: 3071731072513523752}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -135,20 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  _bulletPool: {fileID: 11400000, guid: 8e6566064e388f9479f9154550c3ad3e, type: 2}
+  _poolParent: {fileID: 0}
   _firePoint: {fileID: 6422730515521550291}
   _maxBulletCount: 12
   _currentBulletCount: 0
---- !u!114 &3071731072513523752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579328847045299654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d6f5c9fd49c524fbce9c2816027a1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5788422320467913843, guid: 30d5c2f3d66e18345bcdb174026f4707, type: 3}
-  _poolSize: 20

@@ -9,7 +9,6 @@ public class DropGun : Droppable
         if (other.CompareTag("Player"))
         {
             GameObject randomGun = Instantiate(_gunPrefab);
-
             randomGun.transform.parent = other.transform;
         }
     }

@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class DropExp : Droppable
 {
+
+
+    private void Awake()
+    {
+        
+    }
+
     protected override void OnTriggerEvent(Collider other)
     {
         if (other.CompareTag("Player"))

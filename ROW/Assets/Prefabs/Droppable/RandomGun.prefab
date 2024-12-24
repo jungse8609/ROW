@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0425dc19e060a43a25adcace28a850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gunPrefab: {fileID: 8579328847045299654, guid: 14e23631ce074fc4eaab7be6df321bf2, type: 3}
 --- !u!114 &3541725447336446429
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,10 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [Header("Pool Names")]
-    [SerializeField] private string _monsterPoolName = "MonsterPool"; // ObjectPoolManager에 설정한 풀 이름
-    [SerializeField] private string _bossPoolName = "BossPool";       // ObjectPoolManager에 설정한 풀 이름
+    [Header("Pool Setting")]
+    [SerializeField] private ObjectPoolManagerSO _monsterPool;
+    [SerializeField] private ObjectPoolManagerSO _bossPool;
+    [SerializeField] private ObjectPoolManagerSO _expPool;
+    [SerializeField] private Transform _monsterParent;
+    [SerializeField] private Transform _bossParent;
+    [SerializeField] private Transform _expParent;
 
     [Header("Spawn Setting")]
     [SerializeField] private Transform[] _spawnPoints;
@@ -15,6 +20,13 @@ public class MonsterSpawner : MonoBehaviour
     private float _spawnTimer;
     private int _waveCount = 0;
     private int _BOSS_WAVE = 5;
+
+    private void Awake()
+    {
+        _monsterPool.InitializePool(_monsterParent);
+        _bossPool.InitializePool(_bossParent);
+        _expPool.InitializePool(_expParent);
+    }
 
     private void Update()
     {
@@ -45,34 +57,18 @@ public class MonsterSpawner : MonoBehaviour
             int spawnCount = Mathf.Min(_mspawncount, _spawnPoints.Length);
             for (int i = 0; i < spawnCount; i++)
             {
-                GameObject monster = ObjectPoolManager.Instance.GetObject(_monsterPoolName);
-                if (monster != null)
-                {
-                    monster.transform.position = _spawnPoints[shuffledIndices[i]].position;
-                    monster.transform.rotation = _spawnPoints[shuffledIndices[i]].rotation;
-                    monster.SetActive(true);
+                GameObject monster = _monsterPool.GetObject();
+                monster.transform.position = _spawnPoints[shuffledIndices[i]].position;
 
-                    // 필요한 경우 추가 초기화
-                    var monsterScript = monster.GetComponent<Monster>();
-                    monsterScript?.InitMonster();
-                }
+                monster.SetActive(true);
             }
         }
 
         if (_waveCount % _BOSS_WAVE == 0) // 5번째 웨이브마다 보스 소환
         {
-            GameObject boss = ObjectPoolManager.Instance.GetObject(_bossPoolName);
-            if (boss != null && _spawnPoints.Length > 0)
-            {
-                int randomIndex = Random.Range(0, _spawnPoints.Length);
-                boss.transform.position = _spawnPoints[randomIndex].position;
-                boss.transform.rotation = _spawnPoints[randomIndex].rotation;
-                boss.SetActive(true);
-
-                // 필요한 경우 추가 초기화
-                var bossScript = boss.GetComponent<Monster>();
-                bossScript?.InitMonster();
-            }
+            GameObject boss = _bossPool.GetObject();
+            boss.transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
+            boss.SetActive(true);
         }
     }
 

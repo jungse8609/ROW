@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private ObjectPoolManagerSO _bulletPool = default;
+
     private float _speed = 0.0f;
     private float _damage = 0.0f;
-    private BulletPoolManager _bulletPool = default;
 
-    public void InitBullet(BulletPoolManager bulletPool, float speed, float damage)
+    public void InitBullet(float speed, float damage)
     {
         _speed = speed;
         _damage = damage;
-        _bulletPool = bulletPool;
     }
 
     private void OnEnable()
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
 
         if (gameObject.activeSelf)
         {
-            _bulletPool.ReturnBullet(this.gameObject);
+            _bulletPool.ReturnObject(this.gameObject);
         }
     }
 
@@ -38,13 +38,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Monster"))
         {
-            Debug.Log(other.gameObject);
-
             Monster monster = other.GetComponent<Monster>();
             if (monster != null)
             {
                 monster.TakeDamage(_damage);
-                _bulletPool.ReturnBullet(this.gameObject);   
+                _bulletPool.ReturnObject(this.gameObject);   
             }
         }
     }
