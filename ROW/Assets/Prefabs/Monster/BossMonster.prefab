@@ -190,7 +190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterStat: {fileID: 11400000, guid: f324aad8ac0cf914c9619131233f58da, type: 2}
   _monsterPool: {fileID: 11400000, guid: 194e201a2f921d348a1796284e215ebd, type: 2}
-  _droppablePool: {fileID: 11400000, guid: d82f3f520c29c0042a2a963ca0f5e8b1, type: 2}
+  _droppablePool: {fileID: 11400000, guid: 7ca8ae891baab6c4ea760f699b35ebd6, type: 2}
+  _dropGunPrefabs:
+  - {fileID: 2264400429867151474, guid: 8a13da99a913c464ca92fee70c93eabe, type: 3}
+  - {fileID: 2264400429867151474, guid: 07e1a39a5d6ef224a9d7e3de1957ebaf, type: 3}
+  - {fileID: 2264400429867151474, guid: 08b85dc813f604a4cae857990f5ab515, type: 3}
   _teleportCooldown: 5
   _teleportDistance: 10
 --- !u!195 &6160626849538616045

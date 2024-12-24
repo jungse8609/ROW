@@ -22,6 +22,12 @@ public class FireAction : MonoBehaviour
         _gun = _gunObject.GetComponent<Gun>();
     }
 
+    public void ReplaceGun(Gun newGun)
+    {
+        _gunObject = newGun.gameObject;
+        _gun = newGun;
+    }
+
     private void Update()
     {
         OnUpdate();

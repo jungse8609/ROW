@@ -1,19 +1,18 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_PausePanel;
-    [SerializeField]
-    private GameObject m_MainPanel;
-    [SerializeField]
-    private UnityEvent m_LevelupEvent;
+    [SerializeField] private InputReader _inputReader = default;
 
-    public static bool m_isPause = false;
+    [SerializeField] private GameObject m_PausePanel;
+    [SerializeField] private GameObject m_MainPanel;
+    [SerializeField] private UnityEvent m_LevelupEvent;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private bool m_isPause = false;
+
     void Start()
     {
         if(null == m_PausePanel || null == m_MainPanel)
@@ -53,13 +52,17 @@ public class PauseMenu : MonoBehaviour
         m_isPause = false;
         m_PausePanel.SetActive(false);
         m_MainPanel.SetActive(true);
+        _inputReader.EnableGameplayInput();
         Time.timeScale = 1f;
+        Debug.Log($"Resume, {Time.timeScale}");
     }
     public void Pause()
     {
         m_isPause = true;
         m_PausePanel.SetActive(true);
         m_MainPanel.SetActive(false);
+        _inputReader.DisableAllInput();
         Time.timeScale = 0f;
+        Debug.Log($"Pause, {Time.timeScale}");
     }
 }

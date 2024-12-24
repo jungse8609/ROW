@@ -31,32 +31,32 @@ public class PlayerStatSO : ScriptableObject
         {
             case 0:
                 desc.sprite = Resources.Load<Sprite>("Image/MaxHp");
-                desc.title = "MaxHp";
-                desc.description = "";
+                desc.title = "최대 체력";
+                desc.description = $"{MaxHp} -> ";
                 break;
             case 1:
                 desc.sprite = Resources.Load< Sprite>("Image/RegenAmount");
-                desc.title = "RegenAmount";
+                desc.title = "체력 재생력";
                 desc.description = "";
                 break;
             case 2:
                 desc.sprite = Resources.Load< Sprite>("Image/MoveSpeed");
-                desc.title = "MoveSpeed";
+                desc.title = "이동 속도";
                 desc.description = "";
                 break;
             case 3:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletSpeed");
-                desc.title = "BulletSpeed";
+                desc.title = "총알 속도";
                 desc.description = "";
                 break;
             case 4:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletDamage");
-                desc.title = "BulletDamage";
+                desc.title = "총 데미지";
                 desc.description = "";
                 break;
             case 5:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletCooltime");
-                desc.title = "BulletCooltime";
+                desc.title = "발사 속도";
                 desc.description = "";
                 break;
             case 6:
