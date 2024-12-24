@@ -96,15 +96,21 @@ public class MapTile
 
         for(int i=0; i<iEnvironmentCount; ++i)
         {
+            bool IsPositionFound = false;
+            int EscapeCount = 0;
 
-            while(true)
+            while(!IsPositionFound && EscapeCount <= 10)
             {
+                ++EscapeCount;
+
                 float PositionX = UnityEngine.Random.Range(-10f, 11f);    // -10 ~ 10
                 float PositionZ = UnityEngine.Random.Range(-10f, 11f);    // -10 ~ 10
 
                 Vector3 vRandomPosition = new Vector3(PositionX, 1, PositionZ) + CoordinateToPosition();
 
-                if(!IsPositionOccupied(vRandomPosition))
+                IsPositionFound = IsPositionOccupied(vRandomPosition);  // 배치 위치 찾기
+
+                if (!IsPositionFound)       // 찾음
                 {
                     vRandomPosition.y = -2;
                     GameObject obj = MonoBehaviour.Instantiate(SelectPrefabs(), vRandomPosition, RandomRotation());
@@ -120,7 +126,6 @@ public class MapTile
                     }
 
                     m_Envirionments.Add(obj);
-                    break;
                 }
             }
         }

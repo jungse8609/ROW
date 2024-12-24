@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
-    public GameObject m_PausePanel;
-    public GameObject m_MainPanel;
+    private GameObject m_PausePanel;
+    [SerializeField]
+    private GameObject m_MainPanel;
+    [SerializeField]
+    private UnityEvent m_LevelupEvent;
+
     public static bool m_isPause = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +44,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+            m_LevelupEvent.Invoke();
         }
     }
 
