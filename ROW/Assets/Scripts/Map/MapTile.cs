@@ -106,7 +106,6 @@ public class MapTile
 
                 if(!IsPositionOccupied(vRandomPosition))
                 {
-                    Debug.Log(PositionX + ", " + PositionZ + ", " +  vRandomPosition);
                     vRandomPosition.y = -2;
                     GameObject obj = MonoBehaviour.Instantiate(SelectPrefabs(), vRandomPosition, RandomRotation());
                     if(null == obj)
