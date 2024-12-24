@@ -19,7 +19,7 @@ public class MonsterSpawner : MonoBehaviour
     // Spawn variables
     private float _spawnTimer;
     private int _waveCount = 0;
-    private int _BOSS_WAVE = 5;
+    private int _BOSS_WAVE = 1;
 
     private void Awake()
     {

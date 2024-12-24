@@ -13,7 +13,8 @@ public abstract class Droppable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnTriggerEvent(other);
-            _pool.ReturnObject(this.gameObject);            
+            if (_pool != null)
+                _pool.ReturnObject(this.gameObject);
         }
     }
 

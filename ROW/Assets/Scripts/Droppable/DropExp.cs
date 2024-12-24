@@ -6,6 +6,5 @@ public class DropExp : Droppable
     {
         LevelManager levelManager = other.GetComponent<LevelManager>();
         levelManager.GetExp();
-        Debug.Log("Get Exp");
     }
 }

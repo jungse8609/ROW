@@ -1,8 +1,5 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
-
-using static UnityEditor.Handles;
 
 public class LevelManager : MonoBehaviour
 {
@@ -28,7 +25,6 @@ public class LevelManager : MonoBehaviour
     {
         _levelUpEvent.Invoke();
         _currentLevel += 1;
-        Debug.Log($"·¹º§¾÷ {_currentLevel} -> {_currentLevel + 1}");
     }
 
     private bool HasEnoughExpForLevelUp()

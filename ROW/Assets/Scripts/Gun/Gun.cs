@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     [Header("Bullet Pool Setting")]
     [SerializeField] private ObjectPoolManagerSO _bulletPool = default;
     [SerializeField] private Transform _poolParent;
+    public Transform PoolParent { get { return _poolParent; } }
 
     [Header("Gun Setting")]
     [SerializeField] private Transform _firePoint;
@@ -19,6 +20,11 @@ public class Gun : MonoBehaviour
     public float CurrentBulletCount { get { return _currentBulletCount; } }
     
     public bool isReloading = false;
+
+    public void InitPoolParent(Transform parent)
+    {
+        _poolParent = parent;
+    }
 
     private void Awake()
     {

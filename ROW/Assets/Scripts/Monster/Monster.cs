@@ -8,9 +8,8 @@ public class Monster : MonoBehaviour
     [SerializeField] protected ObjectPoolManagerSO _droppablePool = default;
 
     protected ObjectPoolManagerSO _dropPool;
-
-    private Transform playerTransform;
-    private NavMeshAgent navAgent; // NavMeshAgent ÄÄÆ÷³ÍÆ®
+    protected Transform playerTransform;
+    protected NavMeshAgent navAgent; // NavMeshAgent ÄÄÆ÷³ÍÆ®
 
     private void Awake()
     {
@@ -48,6 +47,16 @@ public class Monster : MonoBehaviour
     {
         if (playerTransform == null || navAgent == null) return;
 
+        if (Time.timeScale == 0f)
+        {
+            navAgent.isStopped = true;
+            return;
+        }
+        else
+        {
+            navAgent.isStopped = false;
+        }
+
         navAgent.SetDestination(playerTransform.position);
     }
 
@@ -65,7 +74,7 @@ public class Monster : MonoBehaviour
         return _monsterStat.AttackDamage;
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         _monsterPool.ReturnObject(this.gameObject);
 
