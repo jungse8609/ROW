@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _firePoint; // �߻� ��ġ
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
-    [SerializeField] private AudioSource _reloadAudioSource;
+    private AudioSource _reloadAudioSource;
 
     public float MaxBulletCount { get { return _maxBulletCount; } }
     public float CurrentBulletCount { get { return _currentBulletCount; } }

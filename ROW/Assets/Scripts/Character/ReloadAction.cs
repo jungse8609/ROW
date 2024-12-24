@@ -4,7 +4,7 @@ public class ReloadAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private PlayerStatSO _playerStat = default;
-    // [SerializeField] private AudioSource _reloadAudioSource;
+    [SerializeField] private AudioSource _reloadAudioSource;
 
     private Gun _gun;
     private Player _player;
@@ -24,19 +24,16 @@ public class ReloadAction : MonoBehaviour
     {
         if (_player.reloadInput)
         {
-            // PlayReloadSound();
+            PlayReloadSound();
             _gun.Reload();
             _player.reloadInput = false;
-            
-            
-
         }
     }
-    // private void PlayReloadSound()
-    // {
-    //     if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)
-    //     {
-    //         _reloadAudioSource.Play(); // AudioSource의 사운드 재생
-    //     }
-    // }
+    private void PlayReloadSound()
+    {
+        if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)
+        {
+            _reloadAudioSource.Play(); // AudioSource의 사운드 재생
+        }
+    }
 }
