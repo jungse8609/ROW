@@ -43,7 +43,6 @@ public class MovementAction : MonoBehaviour
         else
         {
             _anim.SetBool("isWalking", true);
-            Debug.Log("걷기 애니메이션 ");
         }
             
     }
