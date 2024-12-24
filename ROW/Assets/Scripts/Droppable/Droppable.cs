@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Droppable : MonoBehaviour
 {
-    public enum DropType { Stat, Weapon };
+    public enum DropType { Exp, Weapon };
 
     [SerializeField] private ObjectPoolManagerSO _pool = default;
 
@@ -12,9 +12,9 @@ public abstract class Droppable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _pool.ReturnObject(this.gameObject);
-            Debug.Log(" ¹ÝÈ¯!!");
             OnTriggerEvent(other);
+            if (_pool != null)
+                _pool.ReturnObject(this.gameObject);
         }
     }
 

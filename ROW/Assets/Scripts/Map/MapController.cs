@@ -1,9 +1,5 @@
-using NUnit.Framework.Constraints;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MapController : MonoBehaviour
 {
@@ -40,7 +36,6 @@ public class MapController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         CalcuatePlayerCoordinate();
@@ -72,6 +67,5 @@ public class MapController : MonoBehaviour
             }
         }
         m_Maps[0].GenerateNavMesh();
-
     }
 }

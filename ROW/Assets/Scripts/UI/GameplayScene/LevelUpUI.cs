@@ -6,27 +6,17 @@ using UnityEngine.UI;
 
 public class LevelUpUI : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerStatSO _playerStat;
-
-    [SerializeField]
-    private Button[] _Buttons;
+    [SerializeField] private PlayerStatSO _playerStat;
+    [SerializeField] private Button[] _Buttons;
 
     private int[] m_iGeneratedStat;
 
-    public static bool m_isPause = false;
+    public bool m_isPause = false;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
         m_isPause = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void GenerateRandomLevelupOption()  
@@ -41,7 +31,6 @@ public class LevelUpUI : MonoBehaviour
 
     private void MatchStatAndUI(int ButtonIndex, int StatIndex)      // 선택한 버튼에 선택한 index에 맞는 설명 처리
     {
-
         LevelupStatDescription desc = _playerStat.GetLevelupStatDescription(StatIndex);
 
         Debug.Log(desc.sprite);
@@ -50,13 +39,11 @@ public class LevelUpUI : MonoBehaviour
         TextMeshProUGUI[] texts = _Buttons[ButtonIndex].GetComponentsInChildren<TextMeshProUGUI>();
         texts[0].text = desc.title;
         texts[1].text = desc.description;
-
     }
 
     public void Levelup(int _Buttonindex)       //Button의 OnClick으로 실행되는 함수
     {
         _playerStat.LevelupStat(m_iGeneratedStat[_Buttonindex]);
-        //Resume_Levelup();
     } 
 
     public int[] GetRandomValues(int min, int max, int count)
@@ -84,7 +71,7 @@ public class LevelUpUI : MonoBehaviour
     {
         if (m_isPause == true)
         {
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             gameObject.SetActive(true);
             //GenerateRandomLevelupOption();
         }
@@ -93,17 +80,19 @@ public class LevelUpUI : MonoBehaviour
             Resume_Levelup();
         }
     }
+
     public void Pause_Levelup()
     {
         m_isPause = true;
-        Time.timeScale = 0f;
         gameObject.SetActive(true);
         GenerateRandomLevelupOption();
+        //Time.timeScale = 0f;
     }
+
     public void Resume_Levelup()
     {
         m_isPause = false;
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 }
