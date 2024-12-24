@@ -10,9 +10,10 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _poolParent;
 
     [Header("Gun Setting")]
-    [SerializeField] private Transform _firePoint; // ¹ß»ç À§Ä¡
+    [SerializeField] private Transform _firePoint; // ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
+    [SerializeField] private AudioSource _reloadAudioSource;
 
     public float MaxBulletCount { get { return _maxBulletCount; } }
     public float CurrentBulletCount { get { return _currentBulletCount; } }
@@ -32,6 +33,7 @@ public class Gun : MonoBehaviour
         if (_currentBulletCount <= 0)
         {
             Reload();
+            PlayReloadSound(); // ì†Œë¦¬ê°€ ìž¬ìƒì´ ì•ˆë¨
             return;
         }
 
@@ -39,7 +41,7 @@ public class Gun : MonoBehaviour
         GameObject bullet = _bulletPool.GetObject();
         bullet.transform.position = _firePoint.position;
 
-        // firePointÀÇ ÇöÀç È¸Àü °ªÀ» Euler Angles·Î °¡Á®¿È
+        // firePointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Euler Anglesï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector3 fireRotation = _firePoint.eulerAngles;
         fireRotation.x = fireRotation.z = 0f;
         bullet.transform.rotation = Quaternion.Euler(fireRotation);
@@ -80,5 +82,12 @@ public class Gun : MonoBehaviour
         _currentBulletCount = _maxBulletCount;
 
         isReloading = false;
+    }
+    private void PlayReloadSound()
+    {
+        if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)
+        {
+            _reloadAudioSource.Play(); // AudioSourceì˜ ì‚¬ìš´ë“œ ìž¬ìƒ
+        }
     }
 }
