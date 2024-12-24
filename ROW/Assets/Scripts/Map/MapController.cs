@@ -1,7 +1,9 @@
 using NUnit.Framework.Constraints;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapController : MonoBehaviour
 {
@@ -29,6 +31,13 @@ public class MapController : MonoBehaviour
                 m_Maps.Add(newMapTile);
             }
         }
+
+        m_Maps[0].GenerateNavMesh();
+        //foreach (MapTile mapTile in m_Maps)
+        //{
+        //    mapTile.GenerateNavMesh();
+        //}
+
     }
 
     // Update is called once per frame
@@ -62,6 +71,7 @@ public class MapController : MonoBehaviour
 
             }
         }
+        m_Maps[0].GenerateNavMesh();
 
     }
 }

@@ -3114,4 +3114,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PausePanel: {fileID: 421333997802995328}
   m_MainPanel: {fileID: 183324577923773671}
-  m_LevelupPanel: {fileID: 4207221449102500165}
+  m_LevelupEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1814829084516350721}
+        m_TargetAssemblyTypeName: LevelUpUI, Assembly-CSharp
+        m_MethodName: Check_UIIsOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
