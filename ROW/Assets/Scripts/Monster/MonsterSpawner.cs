@@ -32,16 +32,18 @@ public class MonsterSpawner : MonoBehaviour
     {
         for (int i = 0; i < _monsterPoolSize; i++)
         {
-            GameObject bullet = Instantiate(_monsterPrefab);
-            bullet.SetActive(false);
-            _monsterPool.Enqueue(bullet);
+            GameObject monster = Instantiate(_monsterPrefab);
+            monster.SetActive(false);
+            monster.GetComponent<Monster>().InitMonster(this);
+            _monsterPool.Enqueue(monster);
         }
 
         for (int i = 0; i < _bossPoolSize; i++)
         {
-            GameObject bullet = Instantiate(_bossPrefab);
-            bullet.SetActive(false);
-            _bossPool.Enqueue(bullet);
+            GameObject boss = Instantiate(_bossPrefab);
+            boss.SetActive(false);
+            boss.GetComponent<Monster>().InitMonster(this);
+            _bossPool.Enqueue(boss);
         }
     }
 
@@ -71,16 +73,20 @@ public class MonsterSpawner : MonoBehaviour
             int[] shuffledIndices = ShuffleIndices(_spawnPoints.Length);
 
             // 최대 x마리의 몬스터를 소환 (스폰포인트가 부족하면 스폰포인트 개수만큼만 소환)
-            int spawnCount = Mathf.Min(2, _spawnPoints.Length);
+            int spawnCount = Mathf.Min(_mspawncount, _spawnPoints.Length);
             for (int i = 0; i < spawnCount; i++)
             {
-                Instantiate(_monsterPrefab, _spawnPoints[shuffledIndices[i]].position, Quaternion.identity);
+                GameObject monster = _monsterPool.Dequeue();
+                monster.transform.position = _spawnPoints[shuffledIndices[i]].position;
+                monster.SetActive(true);
             }
         }
 
         if (_waveCount % _BOSS_WAVE == 0) // 5번째 웨이브마다 보스 소환
         {
-            Instantiate(_bossPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            GameObject boss = _bossPool.Dequeue();
+            boss.transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
+            boss.SetActive(true);
         }
     }
 

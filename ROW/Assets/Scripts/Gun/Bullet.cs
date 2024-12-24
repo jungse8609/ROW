@@ -38,11 +38,13 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Monster"))
         {
+            Debug.Log(other.gameObject);
+
             Monster monster = other.GetComponent<Monster>();
             if (monster != null)
             {
                 monster.TakeDamage(_damage);
-                _bulletPool.ReturnBullet(this.gameObject);
+                _bulletPool.ReturnBullet(this.gameObject);   
             }
         }
     }

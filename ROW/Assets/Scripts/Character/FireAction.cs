@@ -8,13 +8,15 @@ public class FireAction : MonoBehaviour
 
     private Gun _gun;
     private Player _player;
+    private Animator _anim;
 
     private float _bulletTimer = 0.0f;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
-        _gun = _gunObject.GetComponent<Gun>();
+        _anim = GetComponent<Animator>();
+        _gun = _gunObject.GetComponent<Gun>();        
     }
 
     private void Update()
@@ -31,6 +33,7 @@ public class FireAction : MonoBehaviour
 
         if (_player.fireInput && _bulletTimer <= 0.0f)
         {
+            _anim.Play("Rebound");
             _gun.Fire();
 
             if (!_gun.isReloading){ // 총 발사 시 이펙트
