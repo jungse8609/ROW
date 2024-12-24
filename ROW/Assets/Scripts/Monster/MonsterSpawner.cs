@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [Header("Pool Setting")]
-    [SerializeField] private GameObject _monsterPrefab;
-    [SerializeField] private GameObject _bossPrefab;
-    [SerializeField] private int _monsterPoolSize = 20; // 초기 풀 크기
-    [SerializeField] private int _bossPoolSize = 3; // 초기 풀 크기
+    [Header("Pool Names")]
+    [SerializeField] private string _monsterPoolName = "MonsterPool"; // ObjectPoolManager에 설정한 풀 이름
+    [SerializeField] private string _bossPoolName = "BossPool";       // ObjectPoolManager에 설정한 풀 이름
 
     [Header("Spawn Setting")]
     [SerializeField] private Transform[] _spawnPoints;
@@ -18,34 +15,6 @@ public class MonsterSpawner : MonoBehaviour
     private float _spawnTimer;
     private int _waveCount = 0;
     private int _BOSS_WAVE = 5;
-
-    // Pool variables
-    private Queue<GameObject> _monsterPool = new Queue<GameObject>();
-    private Queue<GameObject> _bossPool = new Queue<GameObject>();
-
-    private void Awake()
-    {
-        InitializePool();
-    }
-
-    private void InitializePool()
-    {
-        for (int i = 0; i < _monsterPoolSize; i++)
-        {
-            GameObject monster = Instantiate(_monsterPrefab);
-            monster.SetActive(false);
-            monster.GetComponent<Monster>().InitMonster(this);
-            _monsterPool.Enqueue(monster);
-        }
-
-        for (int i = 0; i < _bossPoolSize; i++)
-        {
-            GameObject boss = Instantiate(_bossPrefab);
-            boss.SetActive(false);
-            boss.GetComponent<Monster>().InitMonster(this);
-            _bossPool.Enqueue(boss);
-        }
-    }
 
     private void Update()
     {
@@ -76,17 +45,34 @@ public class MonsterSpawner : MonoBehaviour
             int spawnCount = Mathf.Min(_mspawncount, _spawnPoints.Length);
             for (int i = 0; i < spawnCount; i++)
             {
-                GameObject monster = _monsterPool.Dequeue();
-                monster.transform.position = _spawnPoints[shuffledIndices[i]].position;
-                monster.SetActive(true);
+                GameObject monster = ObjectPoolManager.Instance.GetObject(_monsterPoolName);
+                if (monster != null)
+                {
+                    monster.transform.position = _spawnPoints[shuffledIndices[i]].position;
+                    monster.transform.rotation = _spawnPoints[shuffledIndices[i]].rotation;
+                    monster.SetActive(true);
+
+                    // 필요한 경우 추가 초기화
+                    var monsterScript = monster.GetComponent<Monster>();
+                    monsterScript?.InitMonster();
+                }
             }
         }
 
         if (_waveCount % _BOSS_WAVE == 0) // 5번째 웨이브마다 보스 소환
         {
-            GameObject boss = _bossPool.Dequeue();
-            boss.transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
-            boss.SetActive(true);
+            GameObject boss = ObjectPoolManager.Instance.GetObject(_bossPoolName);
+            if (boss != null && _spawnPoints.Length > 0)
+            {
+                int randomIndex = Random.Range(0, _spawnPoints.Length);
+                boss.transform.position = _spawnPoints[randomIndex].position;
+                boss.transform.rotation = _spawnPoints[randomIndex].rotation;
+                boss.SetActive(true);
+
+                // 필요한 경우 추가 초기화
+                var bossScript = boss.GetComponent<Monster>();
+                bossScript?.InitMonster();
+            }
         }
     }
 
@@ -106,51 +92,5 @@ public class MonsterSpawner : MonoBehaviour
         }
 
         return indices;
-    }
-
-    public GameObject GetMonster()
-    {
-        if (_monsterPool.Count > 0)
-        {
-            GameObject monster = _monsterPool.Dequeue();
-            monster.SetActive(true);
-            return monster;
-        }
-        else
-        {
-            // 풀에 남은 총알이 없으면 새로 생성
-            GameObject newMonster = Instantiate(_monsterPrefab);
-            newMonster.SetActive(false);
-            return newMonster;
-        }
-    }
-
-    public void ReturnMonster(GameObject monster)
-    {
-        monster.SetActive(false);
-        _monsterPool.Enqueue(monster);
-    }
-
-    public GameObject GetBoss()
-    {
-        if (_monsterPool.Count > 0)
-        {
-            GameObject boss = _bossPool.Dequeue();
-            boss.SetActive(true);
-            return boss;
-        }
-        else
-        {
-            // 풀에 남은 총알이 없으면 새로 생성
-            GameObject newBoss = Instantiate(_bossPrefab);
-            newBoss.SetActive(false);
-            return newBoss;
-        }
-    }
-
-    public void ReturnBoss(GameObject boss)
-    {
-        boss.SetActive(false);
-        _bossPool.Enqueue(boss);
     }
 }

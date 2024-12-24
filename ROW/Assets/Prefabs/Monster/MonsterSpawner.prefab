@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1062988678944656097}
   - component: {fileID: 1574453653975402987}
+  - component: {fileID: 1375677938716794356}
+  - component: {fileID: 2071247710267189823}
   m_Layer: 0
   m_Name: MonsterSpawner
   m_TagString: Untagged
@@ -44,17 +46,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbad16dec85353742b4e89c1b309cad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 7289444577576770372, guid: 211f9c44e1d0da04fa4a1470d1adacc4, type: 3}
-  bossPrefab: {fileID: 2718984611726280719, guid: 2852368ea62c8ba47b9b801fd77193d6, type: 3}
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnInterval: 5
+  _monsterPool: {fileID: 1375677938716794356}
+  _bossPool: {fileID: 1375677938716794356}
+  _spawnPoints: []
+  _spawnInterval: 5
+  _mspawncount: 2
+--- !u!114 &1375677938716794356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053935263847157614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369a6245d9a2d7c40b52d7696a34a6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2718984611726280719, guid: 2852368ea62c8ba47b9b801fd77193d6, type: 3}
+  _initialSize: 5
+--- !u!114 &2071247710267189823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053935263847157614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369a6245d9a2d7c40b52d7696a34a6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7289444577576770372, guid: 211f9c44e1d0da04fa4a1470d1adacc4, type: 3}
+  _initialSize: 20

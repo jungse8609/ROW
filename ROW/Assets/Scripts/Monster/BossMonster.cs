@@ -33,7 +33,7 @@ public class BossMonster : Monster
         _monsterStat.CurrentHealth -= damage;
         if (_monsterStat.CurrentHealth <= 0)
         {
-            _monsterPool.ReturnMonster(this.gameObject);
+            _monsterPool.ReturnObject(this.gameObject);
         }
     }
 }
