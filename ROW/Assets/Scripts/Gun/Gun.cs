@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private PlayerStatSO _playerStat = default;
 
     [Header("Gun Setting")]
-    [SerializeField] private Transform _firePoint; // ¹ß»ç À§Ä¡
+    [SerializeField] private Transform _firePoint; // ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
     
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     public float CurrentBulletCount { get { return _currentBulletCount; } }
 
     private BulletPoolManager _bulletPool = default;
-    private bool isReloading = false;
+    public bool isReloading = false;
 
     private void Awake()
     {

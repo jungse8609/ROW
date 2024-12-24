@@ -859,6 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunObject: {fileID: 5128450463064115503}
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  _muzzleFlash: {fileID: 0}
 --- !u!114 &3243526636993613348
 MonoBehaviour:
   m_ObjectHideFlags: 0

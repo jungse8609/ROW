@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BulletPoolManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab; // ÃÑ¾Ë ÇÁ¸®ÆÕ
-    [SerializeField] private int _poolSize = 20; // ÃÊ±â Ç® Å©±â
+    [SerializeField] private GameObject _bulletPrefab; // ì´ì•Œ í”„ë¦¬íŒ¹
+    [SerializeField] private int _poolSize = 20; // ì´ˆê¸° í’€ í¬ê¸°
 
     private Queue<GameObject> _bulletPool = new Queue<GameObject>();
 
@@ -33,7 +33,7 @@ public class BulletPoolManager : MonoBehaviour
         }
         else
         {
-            // Ç®¿¡ ³²Àº ÃÑ¾ËÀÌ ¾øÀ¸¸é »õ·Î »ı¼º
+            // í’€ì— ë‚¨ì€ ì´ì•Œì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
             GameObject newBullet = Instantiate(_bulletPrefab);
             newBullet.SetActive(false);
             return newBullet;
