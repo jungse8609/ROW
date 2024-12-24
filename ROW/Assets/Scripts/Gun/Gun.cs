@@ -5,22 +5,23 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private PlayerStatSO _playerStat = default;
 
+    [Header("Bullet Pool Setting")]
+    [SerializeField] private ObjectPoolManagerSO _bulletPool = default;
+    [SerializeField] private Transform _poolParent;
+
     [Header("Gun Setting")]
-    [SerializeField] private Transform _firePoint; // ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
-    
+    [SerializeField] private Transform _firePoint; // ¹ß»ç À§Ä¡
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
 
     public float MaxBulletCount { get { return _maxBulletCount; } }
     public float CurrentBulletCount { get { return _currentBulletCount; } }
-
-    private BulletPoolManager _bulletPool = default;
+    
     public bool isReloading = false;
 
     private void Awake()
     {
-        _bulletPool = GetComponent<BulletPoolManager>();
-
+        _bulletPool.InitializePool(_poolParent);
         _currentBulletCount = 12;
     }
 
@@ -35,7 +36,7 @@ public class Gun : MonoBehaviour
         }
 
         // Create Bullet Prefab
-        GameObject bullet = _bulletPool.GetBullet();
+        GameObject bullet = _bulletPool.GetObject();
         bullet.transform.position = _firePoint.position;
 
         // firePointÀÇ ÇöÀç È¸Àü °ªÀ» Euler Angles·Î °¡Á®¿È
@@ -51,7 +52,7 @@ public class Gun : MonoBehaviour
 
         if (bullet.TryGetComponent<Bullet>(out Bullet bulletComponent))
         {
-            bulletComponent.InitBullet(_bulletPool, _playerStat.BulletSpeed, _playerStat.BulletSpeed);
+            bulletComponent.InitBullet(_playerStat.BulletSpeed, _playerStat.BulletSpeed);
         }
         
         _currentBulletCount -= 1;

@@ -173,6 +173,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monsterStat: {fileID: 11400000, guid: e15ae178ba2f86d42a54f6ff62211207, type: 2}
-  moveSpeed: 2
-  attackRange: 1.5
-  maxHealth: 10
+  _monsterPool: {fileID: 11400000, guid: 4b34525fd7d019f40b3d03de014f52c4, type: 2}
+  _droppablePool: {fileID: 11400000, guid: d82f3f520c29c0042a2a963ca0f5e8b1, type: 2}

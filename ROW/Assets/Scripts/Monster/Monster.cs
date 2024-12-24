@@ -4,39 +4,21 @@ using UnityEngine.AI; // NavMeshAgent 사용 시 필요
 public class Monster : MonoBehaviour
 {
     [SerializeField] protected MonsterStatSO _monsterStat = default;
+    [SerializeField] protected ObjectPoolManagerSO _monsterPool = default;
+    [SerializeField] protected ObjectPoolManagerSO _droppablePool = default;
 
-    protected MonsterPoolManager _monsterPool = default;
+    protected ObjectPoolManagerSO _dropPool;
 
     private Transform playerTransform;
     private NavMeshAgent navAgent; // NavMeshAgent 컴포넌트
 
-    private string _poolName;
-
     private void Awake()
     {
         navAgent = GetComponent<NavMeshAgent>();
-        if (navAgent == null)
+        if (navAgent == null )
         {
             Debug.LogError("Monster has no nav mesh!");
         }
-    }
-
-    /// <summary>
-    /// 몬스터를 초기화합니다.
-    /// </summary>
-    public void InitMonster()
-    {
-        // 풀 이름을 태그나 다른 방법으로 설정할 수 있습니다.
-        if (gameObject.CompareTag("Boss"))
-        {
-            _poolName = "BossPool";
-        }
-        else
-        {
-            _poolName = "MonsterPool";
-        }
-
-        // 추가 초기화 로직이 필요하다면 여기에 작성
     }
 
     private void OnEnable()
@@ -74,7 +56,7 @@ public class Monster : MonoBehaviour
         _monsterStat.CurrentHealth -= damage;
         if (_monsterStat.CurrentHealth <= 0)
         {
-            OnDie();
+            Die();
         }
     }
 
@@ -83,9 +65,11 @@ public class Monster : MonoBehaviour
         return _monsterStat.AttackDamage;
     }
 
-    private void OnDie()
+    protected void Die()
     {
-        // 몬스터를 비활성화하고 풀에 반환
-        ObjectPoolManager.Instance.ReturnObject(_poolName, gameObject);
+        _monsterPool.ReturnObject(this.gameObject);
+
+        GameObject drop = _droppablePool.GetObject();
+        drop.transform.position = transform.position;
     }
 }
