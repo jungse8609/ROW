@@ -27,16 +27,6 @@ public class PlayerHp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // for test
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            _playerStat.CurrentHp -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            _playerStat.CurrentHp += 1;
-        }
-
         // 체력이 다 차있다면 보이지 않기
         //if (m_fCurrentHp == _playerStat.MaxHp)
         //{
