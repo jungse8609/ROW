@@ -51,6 +51,7 @@ public class HpManager : MonoBehaviour
             // 다음 회복까지 다시 _regenInterval로 설정
             _regenTimer = _regenInterval;
         }
+
     }
 
     /// <summary>
