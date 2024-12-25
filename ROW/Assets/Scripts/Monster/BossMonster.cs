@@ -5,7 +5,7 @@ public class BossMonster : Monster
     [SerializeField] private GameObject[] _dropGunPrefabs;
     [SerializeField] private float _teleportCooldown = 5.0f;
     [SerializeField] private float _teleportDistance = 10.0f;
-
+    
     private Transform _playerTransform;
     private float _teleportTimer = 0.0f;
 

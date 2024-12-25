@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 0b068514ca1aba5419b107ba38f3cc7d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _levelUpAudioClip: {fileID: 8300000, guid: 0a9177415caff4fc8ace0cae0ae19b20, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

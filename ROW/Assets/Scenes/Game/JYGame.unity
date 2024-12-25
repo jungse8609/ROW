@@ -471,6 +471,10 @@ PrefabInstance:
       propertyPath: _inputReader
       value: 
       objectReference: {fileID: 11400000, guid: b4016c837dcbc124d8f25a44eff47bf1, type: 2}
+    - target: {fileID: 8936001208994153001, guid: 90f7f3efc41a78d489f9f041a5e67b2a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209633281934413911, guid: 90f7f3efc41a78d489f9f041a5e67b2a, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -761,6 +765,18 @@ PrefabInstance:
       propertyPath: _reloadAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
+    - target: {fileID: 4230034365224906270, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230034365224906270, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 0878fb1b34a9f064e9349721d251c2a2, type: 3}
+    - target: {fileID: 4230034365224906270, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0878fb1b34a9f064e9349721d251c2a2, type: 3}
     - target: {fileID: 6454972146346609348, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: _bulletPool
       value: 
@@ -1247,11 +1263,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2892041074892538816, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2892041074892538816, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2892041074892538816, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1295,23 +1311,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6351081302965197833, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6351081302965197833, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7107198558271652703, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7107198558271652703, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7107198558271652703, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7711958260646830174, guid: 7d968cfc35d8701418356e42888f6369, type: 3}
       propertyPath: m_Name

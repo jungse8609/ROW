@@ -267,3 +267,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPool: {fileID: 11400000, guid: 8e6566064e388f9479f9154550c3ad3e, type: 2}
+  _hitSound: {fileID: 8300000, guid: 9ab7ac9f6e729457d8a8dfa89151ee30, type: 3}

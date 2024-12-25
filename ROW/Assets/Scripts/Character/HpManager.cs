@@ -10,13 +10,21 @@ public class HpManager : MonoBehaviour
 
     [Header("피격 후 회복 지연 설정")]
     [SerializeField] private float _regenDelayAfterDamage = 3f; // 몇 초 동안 회복이 중단될지
+    [SerializeField] private AudioClip _DieAudioClip; // 사망시 사운드
+    private AudioPlayer _playerAudio;
 
     private float _regenTimer = 0f;       // 자동 회복 주기 체크용
     private float _damageDelayTimer = 0f; // 피격 후 회복 지연 타이머
+    private bool isDead = false; // 사망여부를 추적하는 변수
 
+    private void Awake()
+    {
+        _playerAudio = GetComponent<AudioPlayer>();
+    }
     private void OnEnable()
     {
         _playerStat.CurrentHp = _playerStat.MaxHp;
+        isDead = false;  // 활성화될 때 사망 상태 초기화
     }
 
     private void Start()
@@ -79,6 +87,8 @@ public class HpManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망!");
+        isDead = true;  // 사망 상태로 변경
+        _playerAudio.PlayAudioClip(_DieAudioClip); // 사망시 사운드
 
         // 사망 로직 (오브젝트 비활성화, 게임 오버, 씬 전환 등)을 여기에 추가
         // gameObject.SetActive(false);

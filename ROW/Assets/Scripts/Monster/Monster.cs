@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI; // NavMeshAgent »ç¿ë ½Ã ÇÊ¿ä
+using UnityEngine.AI; // NavMeshAgent ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½
 
 public class Monster : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
 
     protected ObjectPoolManagerSO _dropPool;
     protected Transform playerTransform;
-    protected NavMeshAgent navAgent; // NavMeshAgent ÄÄÆ÷³ÍÆ®
+    protected NavMeshAgent navAgent; // NavMeshAgent ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     private void Awake()
     {
@@ -27,17 +27,17 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        // Player ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ® Ã£±â
+        // Player ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
         }
 
-        // NavMeshAgent ±âº» ¼¼ÆÃ
+        // NavMeshAgent ï¿½âº» ï¿½ï¿½ï¿½ï¿½
         if (navAgent != null)
         {
-            // ÀÌµ¿ ¼Óµµ, ¸ØÃâ °Å¸® ¼³Á¤
+            // ï¿½Ìµï¿½ ï¿½Óµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             navAgent.speed = _monsterStat.MoveSpeed;
             navAgent.stoppingDistance = _monsterStat.AttackRange;
         }
@@ -63,6 +63,7 @@ public class Monster : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         _monsterStat.CurrentHealth -= damage;
+        
         if (_monsterStat.CurrentHealth <= 0)
         {
             Die();
