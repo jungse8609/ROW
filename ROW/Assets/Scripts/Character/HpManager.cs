@@ -11,6 +11,7 @@ public class HpManager : MonoBehaviour
     [Header("피격 후 회복 지연 설정")]
     [SerializeField] private float _regenDelayAfterDamage = 3f; // 몇 초 동안 회복이 중단될지
     [SerializeField] private AudioClip _DieAudioClip; // 사망시 사운드
+    [SerializeField] private AudioClip _hitSoundClip; // 피격시 사운드
     private AudioPlayer _playerAudio;
 
     private float _regenTimer = 0f;       // 자동 회복 주기 체크용
@@ -68,6 +69,7 @@ public class HpManager : MonoBehaviour
     public void GetDamaged(float damage)
     {
         _playerStat.CurrentHp -= damage;
+        _playerAudio.PlayAudioClip(_hitSoundClip); // 피격시 사운드
 
         if (_playerStat.CurrentHp <= 0)
         {

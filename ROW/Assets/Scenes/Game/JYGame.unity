@@ -475,6 +475,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9001419603076119542, guid: 90f7f3efc41a78d489f9f041a5e67b2a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001419603076119542, guid: 90f7f3efc41a78d489f9f041a5e67b2a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209633281934413911, guid: 90f7f3efc41a78d489f9f041a5e67b2a, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -729,6 +737,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2117722420603555294, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: _DieAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: adcbbbae313cb40978e30faf82938987, type: 3}
+    - target: {fileID: 2117722420603555294, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: _hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 37c9133889e2bfc4296ead93a281acc2, type: 3}
     - target: {fileID: 2997746862813622907, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: _expPool
       value: 
