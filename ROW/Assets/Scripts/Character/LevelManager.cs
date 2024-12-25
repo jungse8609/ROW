@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private int _expCount = 0;
 
-    [SerializeField] private UnityEvent _levelUpEvent = new UnityEvent();  // LevelUp시 수행을 위해 추가됨
+    [SerializeField] private UnityEvent _levelUpEvent;  // LevelUp시 수행을 위해 추가됨
     [SerializeField] private AudioClip _levelUpAudioClip;
     private AudioPlayer _playerAudio;
     private void Awake()
@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
+        Debug.Log("Level UP!");
         _levelUpEvent.Invoke();
         _currentLevel += 1;
         _playerAudio.PlayAudioClip(_levelUpAudioClip); // levelup sound play

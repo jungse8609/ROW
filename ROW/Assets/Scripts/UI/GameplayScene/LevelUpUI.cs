@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelUpUI : MonoBehaviour
 {
+    [SerializeField] private GameObject m_LevelupPanel;
     [SerializeField] private PlayerStatSO _playerStat;
     [SerializeField] private Button[] _Buttons;
 
@@ -15,7 +16,7 @@ public class LevelUpUI : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+        m_LevelupPanel.SetActive(false);
         m_isPause = false;
     }
 
@@ -71,8 +72,8 @@ public class LevelUpUI : MonoBehaviour
     {
         if (m_isPause == true)
         {
-            //Time.timeScale = 0f;
-            gameObject.SetActive(true);
+            Time.timeScale = 0f;
+            m_LevelupPanel.SetActive(true);
             //GenerateRandomLevelupOption();
         }
         else
@@ -84,15 +85,15 @@ public class LevelUpUI : MonoBehaviour
     public void Pause_Levelup()
     {
         m_isPause = true;
-        gameObject.SetActive(true);
+        m_LevelupPanel.SetActive(true);
         GenerateRandomLevelupOption();
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
     }
 
     public void Resume_Levelup()
     {
         m_isPause = false;
-        //Time.timeScale = 1f;
-        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        m_LevelupPanel.SetActive(false);
     }
 }

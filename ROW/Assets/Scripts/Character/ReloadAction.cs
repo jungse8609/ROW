@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ReloadAction : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ReloadAction : MonoBehaviour
     private Gun _gun;
     private Player _player;
     private AudioPlayer _playerAudio;
+
+    [SerializeField] private UnityEvent _reloadEvent;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class ReloadAction : MonoBehaviour
         if (_player.reloadInput)
         {
             _gun.Reload();
+            _reloadEvent.Invoke();                  // Ui On
             PlayGunReloadSound();
             _player.reloadInput = false;
         }
