@@ -7,13 +7,19 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private int _expCount = 0;
 
-    [SerializeField] private UnityEvent _levelUpEvent = new UnityEvent();  // LevelUp½Ã ¼öÇàÀ» À§ÇØ Ãß°¡µÊ
+    [SerializeField] private UnityEvent _levelUpEvent = new UnityEvent();  // LevelUpì‹œ ìˆ˜í–‰ì„ ìœ„í•´ ì¶”ê°€ë¨
+    [SerializeField] private AudioClip _levelUpAudioClip;
+    private AudioPlayer _playerAudio;
+    private void Awake()
+    {
+        _playerAudio = GetComponent<AudioPlayer>();
+    }
 
     public void GetExp()
     {
         _expCount += 1;
 
-        // if level up µÇ´Â exp, ·¹º§¾÷
+        // if level up ë˜ëŠ” exp, ë ˆë²¨ì—…
         if (HasEnoughExpForLevelUp())
         {
             LevelUp();
@@ -25,6 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         _levelUpEvent.Invoke();
         _currentLevel += 1;
+        _playerAudio.PlayAudioClip(_levelUpAudioClip); // levelup sound play
     }
 
     private bool HasEnoughExpForLevelUp()

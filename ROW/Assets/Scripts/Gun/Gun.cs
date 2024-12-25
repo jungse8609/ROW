@@ -14,7 +14,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private int _maxBulletCount = 12;
     [SerializeField] private int _currentBulletCount = 0;
-    private AudioSource _reloadAudioSource;
 
     public float MaxBulletCount { get { return _maxBulletCount; } }
     public float CurrentBulletCount { get { return _currentBulletCount; } }
@@ -39,7 +38,6 @@ public class Gun : MonoBehaviour
         if (_currentBulletCount <= 0)
         {
             Reload();
-            PlayReloadSound(); // 소리가 재생이 안됨
             return;
         }
 
@@ -89,11 +87,4 @@ public class Gun : MonoBehaviour
         isReloading = false;
     }
 
-    private void PlayReloadSound()
-    {
-        if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)
-        {
-            _reloadAudioSource.Play(); // AudioSource의 사운드 재생
-        }
-    }
 }
