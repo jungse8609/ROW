@@ -65,7 +65,10 @@ public class Player : MonoBehaviour
 
     private void OnFire()
     {
-        fireInput = true;
+        if(Time.timeScale !=0)      // 일시정지중 총 안나가게 처리해봄
+        {
+            fireInput = true;
+        }
     }
 
     private void OnFireCancel()
