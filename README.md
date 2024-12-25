@@ -1,6 +1,15 @@
 # Revolution Of Weapons
 부산대 컴퓨터 그래픽스 3D 게임 개발 프로젝트입니다.
 프로젝트 명은 "Revolution Of Weapon, 무기들의 반란" 입니다.
+## 구성원
+
+<div align="center">
+
+| [정국경](https://github.com/jungse8609) | [석재영](https://github.com/Sjaeyeong) | [조현진](https://github.com/CHAINSAW1234) | [심영환](https://github.com/Shim0Hwan) |
+| :---------------------------------------: | :------------------------------------: | :------------------------------------: | :------------------------------------: |
+| <img src="https://github.com/jungse8609.png" width="100"> | <img src="https://github.com/Sjaeyeong.png" width="100"> | <img src="https://github.com/CHAINSAW1234.png" width="100"> | <img src="https://github.com/Shim0Hwan.png" width="100"> |
+
+</div>
 
 ## 작업 환경
 Unity Editor : 6000.0.30f1
