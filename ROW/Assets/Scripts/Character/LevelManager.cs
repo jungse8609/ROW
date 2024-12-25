@@ -5,7 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     private int _currentLevel = 0;
 
-    [SerializeField] private int _expCount = 0;
+    [SerializeField] public int _expCount = 0;
 
     [SerializeField] private UnityEvent _levelUpEvent;  // LevelUp시 수행을 위해 추가됨
     [SerializeField] private AudioClip _levelUpAudioClip;
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    private int CalculateRequiredExpForNextLevel()
+    public int CalculateRequiredExpForNextLevel()
     {
         return (_currentLevel + 1) * 5;
     }
