@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5970774238040593176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.02, z: 0.634}
+  m_LocalPosition: {x: 0, y: 0.056, z: 1.285}
   m_LocalScale: {x: 0.2, y: 0.19999996, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7786471218723040275}
   - component: {fileID: 7615769833660845613}
   m_Layer: 0
-  m_Name: Pistol 1
+  m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8579328847045299654}
-  m_Mesh: {fileID: -7242533283569766861, guid: 936c61ca2647f3048b0945e7c6da3bf2, type: 3}
+  m_Mesh: {fileID: 4106691986641640505, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
 --- !u!23 &7786471218723040275
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97,9 +97,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4932659541264793076, guid: 936c61ca2647f3048b0945e7c6da3bf2, type: 3}
-  - {fileID: 8936334390460649814, guid: 936c61ca2647f3048b0945e7c6da3bf2, type: 3}
-  - {fileID: -689604842707047849, guid: 936c61ca2647f3048b0945e7c6da3bf2, type: 3}
+  - {fileID: -6058363886135042362, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
+  - {fileID: -2013272673582136721, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
+  - {fileID: -5029965632522592688, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
+  - {fileID: 4815842340320891436, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
+  - {fileID: -7695502060417483856, guid: 4f082a582935d774ebb3f54f2541c5f3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +139,8 @@ MonoBehaviour:
   _bulletPool: {fileID: 11400000, guid: 8e6566064e388f9479f9154550c3ad3e, type: 2}
   _poolParent: {fileID: 0}
   _firePoint: {fileID: 6422730515521550291}
-  _maxBulletCount: 12
-  _currentBulletCount: 0
-  _reloadAudioSource: {fileID: 0}
+  _maxBulletCount: 15
+  _currentBulletCount: 15
+  _fireAudio: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
+  _reloadAudio: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   isReloading: 0

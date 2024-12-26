@@ -29,7 +29,6 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
-        Debug.Log("Level UP!");
         _levelUpEvent.Invoke();
         _currentLevel += 1;
         _playerAudio.PlayAudioClip(_levelUpAudioClip); // levelup sound play

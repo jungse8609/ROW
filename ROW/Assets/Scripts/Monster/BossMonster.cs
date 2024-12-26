@@ -31,8 +31,8 @@ public class BossMonster : Monster
 
     public override void TakeDamage(float damage)
     {
-        _monsterStat.CurrentHealth -= damage;
-        if (_monsterStat.CurrentHealth <= 0)
+        _currentHp -= damage;
+        if (_currentHp <= 0)
         {
             Die();
         }

@@ -9,7 +9,9 @@ public class Monster : MonoBehaviour
 
     protected ObjectPoolManagerSO _dropPool;
     protected Transform playerTransform;
-    protected NavMeshAgent navAgent; // NavMeshAgent ������Ʈ
+    protected NavMeshAgent navAgent;
+
+    public float _currentHp;
 
     private void Awake()
     {
@@ -22,22 +24,19 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
-        _monsterStat.CurrentHealth = _monsterStat.MaxHealth;
+        _currentHp = _monsterStat.MaxHealth;
     }
 
     private void Start()
     {
-        // Player �±׸� ���� ������Ʈ ã��
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
         }
 
-        // NavMeshAgent �⺻ ����
         if (navAgent != null)
         {
-            // �̵� �ӵ�, ���� �Ÿ� ����
             navAgent.speed = _monsterStat.MoveSpeed;
             navAgent.stoppingDistance = _monsterStat.AttackRange;
         }
@@ -62,9 +61,9 @@ public class Monster : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        _monsterStat.CurrentHealth -= damage;
+        _currentHp -= damage;
         
-        if (_monsterStat.CurrentHealth <= 0)
+        if (_currentHp <= 0)
         {
             Die();
         }

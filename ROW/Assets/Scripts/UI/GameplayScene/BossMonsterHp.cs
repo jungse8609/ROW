@@ -16,19 +16,19 @@ public class BossMonsterHp : MonoBehaviour
 
     void Start()
     {
-        _currentHp = _MonsterSO.CurrentHealth;
+        _currentHp = _Monster._currentHp;
 
         
-        _hpBarSlider.value = _MonsterSO.CurrentHealth / _MonsterSO.MaxHealth;
+        _hpBarSlider.value = _Monster._currentHp / _MonsterSO.MaxHealth;
     }
 
     void Update()
     {
         transform.position = new Vector3(0,100, 0) + Camera.main.WorldToScreenPoint(_Monster.transform.position);
 
-        if(_currentHp != _MonsterSO.CurrentHealth)
+        if(_currentHp != _Monster._currentHp)
         {
-            _currentHp = Mathf.Lerp(_currentHp, _MonsterSO.CurrentHealth, Time.deltaTime * 5);
+            _currentHp = Mathf.Lerp(_currentHp, _Monster._currentHp, Time.deltaTime * 5);
             _hpBarSlider.value = _currentHp / _MonsterSO.MaxHealth;
         }
     }

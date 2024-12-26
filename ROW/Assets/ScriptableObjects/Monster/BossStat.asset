@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: BossStat
   m_EditorClassIdentifier: 
   MoveSpeed: 2
+  AttackDamage: 0.2
   AttackRange: 1.5
-  MaxHealth: 10
+  MaxHealth: 100
+  CurrentHealth: 10

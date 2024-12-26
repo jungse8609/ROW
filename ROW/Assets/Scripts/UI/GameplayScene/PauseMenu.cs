@@ -54,7 +54,6 @@ public class PauseMenu : MonoBehaviour
         m_MainPanel.SetActive(true);
         _inputReader.EnableGameplayInput();
         Time.timeScale = 1f;
-        Debug.Log($"Resume, {Time.timeScale}");
     }
     public void Pause()
     {
@@ -63,6 +62,5 @@ public class PauseMenu : MonoBehaviour
         m_MainPanel.SetActive(false);
         _inputReader.DisableAllInput();
         Time.timeScale = 0f;
-        Debug.Log($"Pause, {Time.timeScale}");
     }
 }

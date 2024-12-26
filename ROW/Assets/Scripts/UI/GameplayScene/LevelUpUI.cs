@@ -34,7 +34,6 @@ public class LevelUpUI : MonoBehaviour
     {
         LevelupStatDescription desc = _playerStat.GetLevelupStatDescription(StatIndex);
 
-        Debug.Log(desc.sprite);
         _Buttons[ButtonIndex].GetComponentsInChildren<Image>()[1].sprite = desc.sprite; // 0 : button, 1: Icon
 
         TextMeshProUGUI[] texts = _Buttons[ButtonIndex].GetComponentsInChildren<TextMeshProUGUI>();

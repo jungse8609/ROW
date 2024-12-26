@@ -3,17 +3,24 @@ using UnityEngine;
 public class MovementAction : MonoBehaviour
 {
     [SerializeField] private PlayerStatSO _playerStat;
+    [SerializeField] private GameObject _gunObject;
 
     private Player _player;
     private Animator _anim;
     private CharacterController _characterController;
     private const float VERTICAL_GRAVITY = -5f;
+    private float _turnSmoothSpeed;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
         _anim = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
+    }
+
+    public void ReplaceGun(Gun newGun)
+    {
+        _gunObject = newGun.gameObject;
     }
 
     private void Update()
@@ -54,6 +61,16 @@ public class MovementAction : MonoBehaviour
 
     private void Rotate()
     {
+        Vector3 horizontalMovement = _player.movementVector;
+        horizontalMovement.y = 0;
+
+        if (horizontalMovement.sqrMagnitude >= 0.02f)
+        {
+            float targetRotation = Mathf.Atan2(-horizontalMovement.z, horizontalMovement.x) * Mathf.Rad2Deg;
+            transform.eulerAngles = Vector3.up *
+                Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation + 90.0f, ref _turnSmoothSpeed, 0.2f);
+        }
+
         // 플레이어 높이와 동일한 y 위치의 평면 생성
         Plane plane = new Plane(Vector3.up, _player.transform.position);
 
@@ -64,10 +81,9 @@ public class MovementAction : MonoBehaviour
         if (plane.Raycast(ray, out float distance))
         {
             Vector3 mouseWorldPosition = ray.GetPoint(distance);
-
-            // 오브젝트 위치 및 방향 조정
-            Vector3 direction = (mouseWorldPosition - _player.transform.position).normalized;
-            transform.LookAt(mouseWorldPosition);
+            Vector3 direction = (mouseWorldPosition - _gunObject.transform.position).normalized;
+            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            _gunObject.transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
     }
 }

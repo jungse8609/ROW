@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.HID;
 public class HpManager : MonoBehaviour
 {
     [SerializeField] private PlayerStatSO _playerStat = default;
+    [SerializeField] private GameObject _gameoverPopup;
 
     [Header("HP 자동 회복 설정")]
     [SerializeField] private float _regenInterval = 2f; // 몇 초마다 HP를 회복할지
@@ -93,8 +94,8 @@ public class HpManager : MonoBehaviour
         _playerAudio.PlayAudioClip(_DieAudioClip); // 사망시 사운드
 
         // 사망 로직 (오브젝트 비활성화, 게임 오버, 씬 전환 등)을 여기에 추가
-        // gameObject.SetActive(false);
-        // or SceneManager.LoadScene("GameOverScene");
+        Time.timeScale = 0.0f;
+        _gameoverPopup.SetActive(true);
     }
 
     private void OnTriggerStay(Collider other)
