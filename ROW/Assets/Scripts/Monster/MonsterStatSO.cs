@@ -7,6 +7,4 @@ public class MonsterStatSO : ScriptableObject
     public float AttackDamage = 0.2f;
     public float AttackRange = 1.5f;
     public float MaxHealth = 10.0f;
-
-    public float CurrentHealth = 0.0f;
 }

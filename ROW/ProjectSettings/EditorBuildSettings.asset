@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: ae5aecedbab2dfb44ba51703f9713ab0
   - enabled: 1
-    path: Assets/Scenes/Test/DroppableTest.unity
-    guid: d83ff9cfd66c2c64094fa5235740f5e2
+    path: Assets/Scenes/Game/Game.unity
+    guid: b50bec952f1939f49a5d421c0921d34e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a553433b5b50bfc42a531198588edcd9, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -6,11 +6,13 @@ public class GunReplacer : MonoBehaviour
 
     private FireAction _fireAction;
     private ReloadAction _reloadAction;
+    private MovementAction _movementAction;
 
     private void Awake()
     {
         _fireAction = GetComponent<FireAction>();
         _reloadAction = GetComponent<ReloadAction>();
+        _movementAction = GetComponent<MovementAction>();
     }
 
     public void ReplaceObject(GameObject newPrefab)
@@ -43,5 +45,6 @@ public class GunReplacer : MonoBehaviour
         currentGun = newGun;
         _fireAction.ReplaceGun(newGun);
         _reloadAction.ReplaceGun(newGun);
+        _movementAction.ReplaceGun(newGun);
     }
 }

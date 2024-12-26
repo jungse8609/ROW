@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class FireAction : MonoBehaviour
 {
-    [SerializeField] private GameObject _gunObject;
+    [SerializeField] public GameObject _gunObject;
     [SerializeField] private PlayerStatSO _playerStat = default;
     [SerializeField] private ParticleSystem _muzzleFlash;
-    [SerializeField] private AudioClip _fireAudioClip;
 
     private Player _player;
     private Animator _anim;
-    private AudioPlayer _playerAudio;
     private Gun _gun;
 
     private float _bulletTimer = 0.0f;
@@ -18,7 +16,6 @@ public class FireAction : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _anim = GetComponent<Animator>();
-        _playerAudio = GetComponent<AudioPlayer>();
         _gun = _gunObject.GetComponent<Gun>();
     }
 
@@ -44,20 +41,13 @@ public class FireAction : MonoBehaviour
         {
             _anim.Play("Rebound");
             
-            if (!_gun.isReloading){ // 총 발사 시 이펙트
+            if (!_gun.isReloading)
+            { // 총 발사 시 이펙트
                 _muzzleFlash.Play();
-                PlayGunFireSound();
             }
             _gun.Fire();
 
             _bulletTimer = _playerStat.BulletCooltime;
-        }
-    }
-    private void PlayGunFireSound()
-    {
-        if (_fireAudioClip != null)
-        {
-            _playerAudio.PlayAudioClip(_fireAudioClip);
         }
     }
 }
