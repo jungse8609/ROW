@@ -818,6 +818,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1501897365150578841, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 74c6f556b5e1a4c4c8e5349dc332aee9, type: 2}
     - target: {fileID: 2997746862813622907, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: _expPool
       value: 
@@ -850,6 +854,10 @@ PrefabInstance:
       propertyPath: _randomGunParent
       value: 
       objectReference: {fileID: 113765901}
+    - target: {fileID: 5866430435153003365, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 74c6f556b5e1a4c4c8e5349dc332aee9, type: 2}
     - target: {fileID: 6454972146346609348, guid: a93c1930caa2d3a4fa76ba6403f2ae42, type: 3}
       propertyPath: _bulletPool
       value: 

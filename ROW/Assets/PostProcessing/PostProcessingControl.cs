@@ -11,17 +11,16 @@ public class PostProcessingControl : MonoBehaviour
     [SerializeField] public int _hp;
     [SerializeField] public int _hpBoundary = 50;
 
+    [SerializeField] private GameObject _player;
+    [SerializeField] private Camera _camera;
+
     // postprocessing variable
     private Vignette _vignette;
     private ChromaticAberration _chromaticAberration;
     private DepthOfField _depthOfField;
 
-
     private float _vignetteIntensity;
-
     private bool _lowHpFlag;
-
-    
 
 
     void Start()
@@ -33,12 +32,20 @@ public class PostProcessingControl : MonoBehaviour
         _volume.profile.TryGet(out _depthOfField);
 
         _vignetteIntensity = _vignette.intensity.value;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         LowHP(Time.time);
+        if (_player != null && _camera != null)
+        {
+            Vector3 camera_to_player = _player.transform.position - _camera.transform.position;
+            float dept_of_field = Vector3.Dot(camera_to_player, _camera.transform.forward);
+            _depthOfField.focusDistance.value = dept_of_field;
+        }
     }
 
     void LowHP(float time)
