@@ -139,3 +139,5 @@ MonoBehaviour:
   _firePoint: {fileID: 6422730515521550291}
   _maxBulletCount: 12
   _currentBulletCount: 0
+  _reloadAudioSource: {fileID: 0}
+  isReloading: 0

@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(_damage);
+
                 _bulletPool.ReturnObject(this.gameObject);   
             }
         }

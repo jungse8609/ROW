@@ -3,56 +3,34 @@ using UnityEngine.UI;
 
 public class PlayerHp : MonoBehaviour
 {
-    [SerializeField] 
-    private PlayerStatSO _playerStat;
+    [SerializeField] private PlayerStatSO _playerStat;
 
-    [SerializeField]
     private Player _player;
+    private Slider _hpBarSlider;
+    private float _currentHp;
 
-
-    private Slider HpBarSlider;
-    private float m_fCurrentHp;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        m_fCurrentHp = _playerStat.CurrentHp;
-
-        HpBarSlider = GetComponent<Slider>();
-        HpBarSlider.value = _playerStat.CurrentHp / _playerStat.MaxHp;
-
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _hpBarSlider = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _currentHp = _playerStat.CurrentHp;
+
+        
+        _hpBarSlider.value = _playerStat.CurrentHp / _playerStat.MaxHp;
+    }
+
     void Update()
     {
-        // for test
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            _playerStat.CurrentHp -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            _playerStat.CurrentHp += 1;
-        }
+        transform.position = new Vector3(0, 60, 0) + Camera.main.WorldToScreenPoint(_player.transform.position);
 
-        // 체력이 다 차있다면 보이지 않기
-        //if (m_fCurrentHp == _playerStat.MaxHp)
-        //{
-        //    gameObject.SetActive(false);
-        //}
-        //else
-        //{
-        //    gameObject.SetActive(true);
-        //}
-
-        gameObject.transform.position = new Vector3(0, 60, 0) + Camera.main.WorldToScreenPoint(_player.transform.position);
-        if(m_fCurrentHp != _playerStat.CurrentHp)
+        if(_currentHp != _playerStat.CurrentHp)
         {
-            m_fCurrentHp = Mathf.Lerp(m_fCurrentHp, _playerStat.CurrentHp, Time.deltaTime * 5);
-            HpBarSlider.value = m_fCurrentHp / _playerStat.MaxHp;
+            _currentHp = Mathf.Lerp(_currentHp, _playerStat.CurrentHp, Time.deltaTime * 5);
+            _hpBarSlider.value = _currentHp / _playerStat.MaxHp;
         }
-
     }
 }

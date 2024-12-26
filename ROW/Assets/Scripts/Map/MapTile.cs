@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Unity.AI.Navigation;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,7 +18,7 @@ public class MapTile
     private GameObject m_Plane = null;
 
 
-    private List<GameObject> m_Envirionments = new List<GameObject>();      // 환경 오브젝트 보관용
+    private List<GameObject> m_Environments = new List<GameObject>();      // 환경 오브젝트 보관용
     private bool[,] m_arrEnvironmentLocation = new bool[10, 10];
 
     public MapTile(Vector2 _Coordinate)
@@ -66,6 +68,22 @@ public class MapTile
         GenerateObjects();
 
         m_Plane.GetComponent<Transform>().position = CoordinateToPosition();
+
+        //GenerateNavMesh();
+    }
+
+    public void GenerateNavMesh()
+    {
+        NavMeshSurface surface = m_Plane.GetComponent<NavMeshSurface>();
+        surface.RemoveData();
+        surface.BuildNavMesh();
+
+        //foreach (var Environment in m_Environments)
+        //{
+        //    surface = Environment.GetComponent<NavMeshSurface>();
+        //    surface.RemoveData();
+        //    surface.BuildNavMesh();
+        //}
     }
 
     private Vector3 CoordinateToPosition()
@@ -84,30 +102,37 @@ public class MapTile
             }
         }
 
-        foreach(GameObject obj in m_Envirionments)
+        foreach(GameObject obj in m_Environments)
         {
             MonoBehaviour.Destroy(obj);
 
         }
-        m_Envirionments.Clear();
+        m_Environments.Clear();
 
         // 2. 생성 개수를 랜덤으로 지정
-        int iEnvironmentCount = UnityEngine.Random.Range(3, 11);    // 3~10
+        int iEnvironmentCount = UnityEngine.Random.Range(3, 7);    // 3~10
 
         for(int i=0; i<iEnvironmentCount; ++i)
         {
+            bool IsPositionFound = false;
+            int EscapeCount = 0;
 
-            while(true)
+            while(!IsPositionFound && EscapeCount <= 10)
             {
+                ++EscapeCount;
+
                 float PositionX = UnityEngine.Random.Range(-10f, 11f);    // -10 ~ 10
                 float PositionZ = UnityEngine.Random.Range(-10f, 11f);    // -10 ~ 10
 
                 Vector3 vRandomPosition = new Vector3(PositionX, 1, PositionZ) + CoordinateToPosition();
 
-                if(!IsPositionOccupied(vRandomPosition))
+                IsPositionFound = IsPositionOccupied(vRandomPosition);  // 배치 위치 찾기
+
+                if (!IsPositionFound)       // 찾음
                 {
                     vRandomPosition.y = -2;
                     GameObject obj = MonoBehaviour.Instantiate(SelectPrefabs(), vRandomPosition, RandomRotation());
+                    //obj.transform.parent = m_Plane.transform;
                     if(null == obj)
                     {
                         Debug.Log("MapTile : Environment Object Instantiate error");
@@ -119,8 +144,7 @@ public class MapTile
 #endif
                     }
 
-                    m_Envirionments.Add(obj);
-                    break;
+                    m_Environments.Add(obj);
                 }
             }
         }

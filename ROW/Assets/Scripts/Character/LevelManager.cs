@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
     private int _currentLevel = 0;
 
-    [SerializeField] private int _expCount = 0;
+    [SerializeField] public int _expCount = 0;
+
+    [SerializeField] private UnityEvent _levelUpEvent;  // LevelUpì‹œ ìˆ˜í–‰ì„ ìœ„í•´ ì¶”ê°€ë¨
+    [SerializeField] private AudioClip _levelUpAudioClip;
+    private AudioPlayer _playerAudio;
+    private void Awake()
+    {
+        _playerAudio = GetComponent<AudioPlayer>();
+    }
 
     public void GetExp()
     {
         _expCount += 1;
 
-        // if level up µÇ´Â exp, ·¹º§¾÷
+        // if level up ë˜ëŠ” exp, ë ˆë²¨ì—…
         if (HasEnoughExpForLevelUp())
         {
             LevelUp();
@@ -20,10 +29,10 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
-        // randomly choose three attirubtes and display UI
-
+        Debug.Log("Level UP!");
+        _levelUpEvent.Invoke();
         _currentLevel += 1;
-        Debug.Log("·¹º§¾÷");
+        _playerAudio.PlayAudioClip(_levelUpAudioClip); // levelup sound play
     }
 
     private bool HasEnoughExpForLevelUp()
@@ -33,7 +42,7 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    private int CalculateRequiredExpForNextLevel()
+    public int CalculateRequiredExpForNextLevel()
     {
         return (_currentLevel + 1) * 5;
     }

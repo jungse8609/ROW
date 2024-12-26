@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BossMonster : Monster
 {
+    [SerializeField] private GameObject[] _dropGunPrefabs;
     [SerializeField] private float _teleportCooldown = 5.0f;
     [SerializeField] private float _teleportDistance = 10.0f;
-
+    
     private Transform _playerTransform;
     private float _teleportTimer = 0.0f;
 
@@ -33,7 +34,29 @@ public class BossMonster : Monster
         _monsterStat.CurrentHealth -= damage;
         if (_monsterStat.CurrentHealth <= 0)
         {
-            _monsterPool.ReturnObject(this.gameObject);
+            Die();
+        }
+    }
+
+    protected override void Die()
+    {
+        _monsterPool.ReturnObject(this.gameObject);
+
+        // 드롭할 무기 프리팹이 할당되어 있는지 확인
+        if (_dropGunPrefabs != null && _dropGunPrefabs.Length > 0)
+        {
+            // 무기 드롭 프리팹 중 랜덤하게 하나 선택
+            int randomIndex = Random.Range(0, _dropGunPrefabs.Length);
+            GameObject selectedGunPrefab = _dropGunPrefabs[randomIndex];
+
+            // 무기 드롭 인스턴스 생성
+            Vector3 dropPosition = transform.position;
+            dropPosition.y = playerTransform.position.y;
+            GameObject gunDrop = Instantiate(selectedGunPrefab, dropPosition, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("BossMonster.Die(): No drop gun prefabs assigned.");
         }
     }
 }

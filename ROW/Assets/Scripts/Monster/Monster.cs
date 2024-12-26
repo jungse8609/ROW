@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI; // NavMeshAgent »ç¿ë ½Ã ÇÊ¿ä
+using UnityEngine.AI; // NavMeshAgent ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½
 
 public class Monster : MonoBehaviour
 {
@@ -8,9 +8,8 @@ public class Monster : MonoBehaviour
     [SerializeField] protected ObjectPoolManagerSO _droppablePool = default;
 
     protected ObjectPoolManagerSO _dropPool;
-
-    private Transform playerTransform;
-    private NavMeshAgent navAgent; // NavMeshAgent ÄÄÆ÷³ÍÆ®
+    protected Transform playerTransform;
+    protected NavMeshAgent navAgent; // NavMeshAgent ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     private void Awake()
     {
@@ -28,17 +27,17 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        // Player ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ® Ã£±â
+        // Player ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
         }
 
-        // NavMeshAgent ±âº» ¼¼ÆÃ
+        // NavMeshAgent ï¿½âº» ï¿½ï¿½ï¿½ï¿½
         if (navAgent != null)
         {
-            // ÀÌµ¿ ¼Óµµ, ¸ØÃâ °Å¸® ¼³Á¤
+            // ï¿½Ìµï¿½ ï¿½Óµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             navAgent.speed = _monsterStat.MoveSpeed;
             navAgent.stoppingDistance = _monsterStat.AttackRange;
         }
@@ -48,12 +47,23 @@ public class Monster : MonoBehaviour
     {
         if (playerTransform == null || navAgent == null) return;
 
+        if (Time.timeScale == 0f)
+        {
+            navAgent.isStopped = true;
+            return;
+        }
+        else
+        {
+            navAgent.isStopped = false;
+        }
+
         navAgent.SetDestination(playerTransform.position);
     }
 
     public virtual void TakeDamage(float damage)
     {
         _monsterStat.CurrentHealth -= damage;
+        
         if (_monsterStat.CurrentHealth <= 0)
         {
             Die();
@@ -65,7 +75,7 @@ public class Monster : MonoBehaviour
         return _monsterStat.AttackDamage;
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         _monsterPool.ReturnObject(this.gameObject);
 

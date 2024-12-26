@@ -53,4 +53,22 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
         if (context.phase == InputActionPhase.Performed)
             ReloadEvent.Invoke();
     }
+
+    public void EnableGameplayInput()
+    {
+        _gameInput.Menus.Disable();
+        _gameInput.Gameplay.Enable();
+    }
+
+    public void EnableMenuInput()
+    {
+        _gameInput.Gameplay.Disable();
+        _gameInput.Menus.Enable();
+    }
+
+    public void DisableAllInput()
+    {
+        _gameInput.Gameplay.Disable();
+        _gameInput.Menus.Disable();
+    }
 }

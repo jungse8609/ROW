@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 312aa322593dd9a42a711f9c900f57b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _monsterStat: {instanceID: 0}
+  - _monsterPool: {instanceID: 0}
+  - _droppablePool: {instanceID: 0}
+  - _monsterhitSound: {instanceID: 0}
+  - _bosshitSound: {fileID: 8300000, guid: 6e0f953c84c654df598106bc1cfa2275, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

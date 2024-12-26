@@ -5,11 +5,12 @@ public class FireAction : MonoBehaviour
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private PlayerStatSO _playerStat = default;
     [SerializeField] private ParticleSystem _muzzleFlash;
-    [SerializeField] private AudioSource _fireAudioSource;
+    [SerializeField] private AudioClip _fireAudioClip;
 
-    private Gun _gun;
     private Player _player;
     private Animator _anim;
+    private AudioPlayer _playerAudio;
+    private Gun _gun;
 
     private float _bulletTimer = 0.0f;
 
@@ -17,7 +18,14 @@ public class FireAction : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _anim = GetComponent<Animator>();
+        _playerAudio = GetComponent<AudioPlayer>();
         _gun = _gunObject.GetComponent<Gun>();
+    }
+
+    public void ReplaceGun(Gun newGun)
+    {
+        _gunObject = newGun.gameObject;
+        _gun = newGun;
     }
 
     private void Update()
@@ -47,9 +55,9 @@ public class FireAction : MonoBehaviour
     }
     private void PlayGunFireSound()
     {
-        if (_fireAudioSource != null)
+        if (_fireAudioClip != null)
         {
-            _fireAudioSource.Play(); // AudioSource의 사운드 재생
+            _playerAudio.PlayAudioClip(_fireAudioClip);
         }
     }
 }

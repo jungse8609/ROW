@@ -1,18 +1,29 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ReloadAction : MonoBehaviour
 {
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private PlayerStatSO _playerStat = default;
-    [SerializeField] private AudioSource _reloadAudioSource;
+    [SerializeField] private AudioClip _reloadAudioClip;
 
     private Gun _gun;
     private Player _player;
+    private AudioPlayer _playerAudio;
+
+    [SerializeField] private UnityEvent _reloadEvent;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
         _gun = _gunObject.GetComponent<Gun>();
+        _playerAudio = GetComponent<AudioPlayer>();
+    }
+
+    public void ReplaceGun(Gun newGun)
+    {
+        _gunObject = newGun.gameObject;
+        _gun = newGun;
     }
 
     private void Update()
@@ -24,19 +35,18 @@ public class ReloadAction : MonoBehaviour
     {
         if (_player.reloadInput)
         {
-            PlayReloadSound();
             _gun.Reload();
+            _reloadEvent.Invoke();                  // Ui On
+            PlayGunReloadSound();
             _player.reloadInput = false;
-            
-            
-
         }
     }
-    private void PlayReloadSound()
+    private void PlayGunReloadSound()
     {
-        if (_reloadAudioSource != null && !_reloadAudioSource.isPlaying)
+        if (_reloadAudioClip != null)
         {
-            _reloadAudioSource.Play(); // AudioSource의 사운드 재생
+            _playerAudio.PlayAudioClip(_reloadAudioClip);
         }
     }
+    
 }
