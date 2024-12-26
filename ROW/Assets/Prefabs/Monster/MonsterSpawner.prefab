@@ -44,8 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbad16dec85353742b4e89c1b309cad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterPool: {fileID: 0}
-  _bossPool: {fileID: 0}
+  _monsterPool: {fileID: 11400000, guid: 4b34525fd7d019f40b3d03de014f52c4, type: 2}
+  _bossPool: {fileID: 11400000, guid: 194e201a2f921d348a1796284e215ebd, type: 2}
+  _expPool: {fileID: 11400000, guid: d82f3f520c29c0042a2a963ca0f5e8b1, type: 2}
+  _monsterParent: {fileID: 0}
+  _bossParent: {fileID: 0}
+  _expParent: {fileID: 0}
   _spawnPoints: []
   _spawnInterval: 5
   _mspawncount: 2

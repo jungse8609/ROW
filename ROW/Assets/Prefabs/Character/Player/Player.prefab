@@ -1028,7 +1028,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ReloadUI, Assembly-CSharp
-        m_MethodName: StartUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelUpUI, Assembly-CSharp
-        m_MethodName: Pause_Levelup
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1066,7 +1066,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _levelUpAudioClip: {fileID: 0}
+  _levelUpAudioClip: {fileID: 8300000, guid: bfc065f505ca54117b47d3a45f758aa3, type: 3}
 --- !u!114 &2117722420603555294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  _gameoverPopup: {fileID: 0}
   _regenInterval: 5
   _regenDelayAfterDamage: 3
   _DieAudioClip: {fileID: 0}
@@ -1904,69 +1905,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: _expPool
-      value: 
-      objectReference: {fileID: 11400000, guid: d82f3f520c29c0042a2a963ca0f5e8b1, type: 2}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: _bossPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 194e201a2f921d348a1796284e215ebd, type: 2}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: _bossPrefab
-      value: 
-      objectReference: {fileID: 2718984611726280719, guid: 2852368ea62c8ba47b9b801fd77193d6, type: 3}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: _monsterPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 4b34525fd7d019f40b3d03de014f52c4, type: 2}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: _monsterPrefab
-      value: 
-      objectReference: {fileID: 7289444577576770372, guid: 211f9c44e1d0da04fa4a1470d1adacc4, type: 3}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
       propertyPath: _spawnPoints.Array.size
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[0]'
-      value: 
-      objectReference: {fileID: 6482192832609355977}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[1]'
-      value: 
-      objectReference: {fileID: 7602444521927587921}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[2]'
-      value: 
-      objectReference: {fileID: 826843811860592446}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1307603111256869031}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[4]'
-      value: 
-      objectReference: {fileID: 1252544276415599307}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[5]'
-      value: 
-      objectReference: {fileID: 5123026561551958689}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[6]'
-      value: 
-      objectReference: {fileID: 8225488045401823537}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[7]'
-      value: 
-      objectReference: {fileID: 1994910261286113258}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[8]'
-      value: 
-      objectReference: {fileID: 3846112197792329378}
-    - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: 'spawnPoints.Array.data[9]'
-      value: 
-      objectReference: {fileID: 1820850320553297996}
     - target: {fileID: 1574453653975402987, guid: 446484296b6752246836fb048d887e9b, type: 3}
       propertyPath: '_spawnPoints.Array.data[0]'
       value: 
@@ -2010,10 +1951,6 @@ PrefabInstance:
     - target: {fileID: 8053935263847157614, guid: 446484296b6752246836fb048d887e9b, type: 3}
       propertyPath: m_Name
       value: MonsterSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 8053935263847157614, guid: 446484296b6752246836fb048d887e9b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
