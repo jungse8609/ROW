@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7672950650648368073}
   - component: {fileID: 3613056791591182622}
   - component: {fileID: 1169176380987417555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: -7446470025996108382}
   - component: {fileID: 2085880731203826492}
   - component: {fileID: -3143670246908990040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -211,4 +211,4 @@ MonoBehaviour:
   _monsterStat: {fileID: 11400000, guid: e15ae178ba2f86d42a54f6ff62211207, type: 2}
   _monsterPool: {fileID: 11400000, guid: 4b34525fd7d019f40b3d03de014f52c4, type: 2}
   _droppablePool: {fileID: 11400000, guid: d82f3f520c29c0042a2a963ca0f5e8b1, type: 2}
-  _damagedAudioClip: {fileID: 0}
+  _currentHp: 0

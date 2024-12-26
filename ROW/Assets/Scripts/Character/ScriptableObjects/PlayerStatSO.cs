@@ -50,37 +50,37 @@ public class PlayerStatSO : ScriptableObject
             case 0:
                 desc.sprite = Resources.Load<Sprite>("Image/MaxHp");
                 desc.title = "최대 체력";
-                desc.description = $"{MaxHp} -> {MaxHp + 2 * (MaxHpLevel + 1)}";
+                desc.description = $"{MaxHp} -> {MaxHp + 2 * (MaxHpLevel + 1):F1}";
                 break;
             case 1:
                 desc.sprite = Resources.Load< Sprite>("Image/RegenAmount");
                 desc.title = "체력 재생력";
-                desc.description = $"{RegenAmount} -> {RegenAmount + 0.2 * (RegenAmountLevel + 1)}";
+                desc.description = $"{RegenAmount} -> {RegenAmount + 0.2 * (RegenAmountLevel + 1):F1}";
                 break;
             case 2:
                 desc.sprite = Resources.Load< Sprite>("Image/MoveSpeed");
                 desc.title = "이동 속도";
-                desc.description = $"{MoveSpeed} -> {MoveSpeed + .2f * (MoveSpeedLevel + 1)}";
+                desc.description = $"{MoveSpeed} -> {MoveSpeed + .2f * (MoveSpeedLevel + 1):F1}";
                 break;
             case 3:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletSpeed");
                 desc.title = "총알 속도";
-                desc.description = $"{BulletSpeed} -> {BulletSpeed + .2f * (BulletSpeedLevel + 1)}";
+                desc.description = $"{BulletSpeed} -> {BulletSpeed + .2f * (BulletSpeedLevel + 1):F1}";
                 break;
             case 4:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletDamage");
                 desc.title = "총 데미지";
-                desc.description = $"{BulletDamage} -> {BulletDamage + .2f * (BulletDamageLevel + 1)}";
+                desc.description = $"{BulletDamage} -> {BulletDamage + .2f * (BulletDamageLevel + 1):F1}";
                 break;
             case 5:
                 desc.sprite = Resources.Load<Sprite>("Image/BulletCooltime");
                 desc.title = "발사 속도";
-                desc.description = $"{BulletCooltime} -> {BulletCooltime - .2f * (BulletCooltimeLevel + 1)}";
+                desc.description = $"{BulletCooltime} -> {BulletCooltime - .2f * (BulletCooltimeLevel + 1):F1}";
                 break;
             case 6:
                 desc.sprite = Resources.Load<Sprite>("Image/ReloadCooltime");
                 desc.title = "ReloadCooltime";
-                desc.description = $"{ReloadCooltime} -> {ReloadCooltime - .2f * (ReloadCooltimeLevel + 1)}";
+                desc.description = $"{ReloadCooltime} -> {ReloadCooltime - .2f * (ReloadCooltimeLevel + 1):F1}";
                 break;
             default:
                 break;
