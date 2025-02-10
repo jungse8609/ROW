@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
-            m_LevelupEvent.Invoke();
+
         }
     }
 
@@ -54,6 +54,7 @@ public class PauseMenu : MonoBehaviour
         m_MainPanel.SetActive(true);
         _inputReader.EnableGameplayInput();
         Time.timeScale = 1f;
+        m_LevelupEvent.Invoke();
     }
     public void Pause()
     {

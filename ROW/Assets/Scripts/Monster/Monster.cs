@@ -48,7 +48,9 @@ public class Monster : MonoBehaviour
 
         if (Time.timeScale == 0f)
         {
+            navAgent.ResetPath();
             navAgent.isStopped = true;
+            navAgent.velocity = Vector3.zero;
             return;
         }
         else

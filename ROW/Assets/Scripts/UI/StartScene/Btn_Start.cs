@@ -4,25 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class Btn_Start : MonoBehaviour
 {
-    [SerializeField]
-    private SceneAsset NextScene;
+    //[SerializeField]
+    //private SceneAsset NextScene;
 
-    private string SceneName;
+    private string SceneName = "Game";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(null == NextScene)
-        {
-            Debug.Log("Btn_Start : NextScene is Null");
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+//        if(null == NextScene)
+//        {
+//            Debug.Log("Btn_Start : NextScene is Null");
+//#if UNITY_EDITOR
+//            UnityEditor.EditorApplication.isPlaying = false;
+//#else
+//            Application.Quit();
+//#endif
+//        }
 
-        SceneName = NextScene.name;
+        //SceneName = NextScene.name;
 
         if(!IsSceneNameValid())
         {

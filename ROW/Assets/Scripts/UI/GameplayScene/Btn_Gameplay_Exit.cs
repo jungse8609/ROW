@@ -4,24 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class Btn_Gameplay_Exit : MonoBehaviour
 {
-    [SerializeField]
-    private SceneAsset TitleScene;
-    private string SceneName;
+    //[SerializeField]
+    //private SceneAsset TitleScene;
+    private string SceneName = "StartScene";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (null == TitleScene)
-        {
-            Debug.Log("Btn_Gameplay_Exit : TitleScene is Null");
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+//        if (null == TitleScene)
+//        {
+//            Debug.Log("Btn_Gameplay_Exit : TitleScene is Null");
+//#if UNITY_EDITOR
+//            UnityEditor.EditorApplication.isPlaying = false;
+//#else
+//            Application.Quit();
+//#endif
+//        }
 
-        SceneName = TitleScene.name;
+        //SceneName = TitleScene.name;
 
         if (!IsSceneNameValid())
         {
