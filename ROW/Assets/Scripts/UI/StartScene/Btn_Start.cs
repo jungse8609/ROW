@@ -12,17 +12,6 @@ public class Btn_Start : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-//        if(null == NextScene)
-//        {
-//            Debug.Log("Btn_Start : NextScene is Null");
-//#if UNITY_EDITOR
-//            UnityEditor.EditorApplication.isPlaying = false;
-//#else
-//            Application.Quit();
-//#endif
-//        }
-
-        //SceneName = NextScene.name;
 
         if(!IsSceneNameValid())
         {

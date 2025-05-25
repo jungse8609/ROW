@@ -13,6 +13,7 @@ public class MapController : MonoBehaviour
     private Vector2 m_PlayerCoordinate = Vector2.zero;  // 이전 플레이어 Coordinate
 
     static public int iListArraySize = 2;
+    static public int PLANESIZE = 20;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,21 +44,21 @@ public class MapController : MonoBehaviour
 
     private void CalcuatePlayerCoordinate() {
         Vector3 vPosition = m_Player.GetComponent<Transform>().position;
-        // Plane 크기 : 20x20
-        Vector2 vNewPlayerCoordinate = new Vector2((int)(vPosition.x/20), (int)(vPosition.z/20));
+        Vector2 vNewPlayerCoordinate = new Vector2((int)(vPosition.x/ PLANESIZE), (int)(vPosition.z/PLANESIZE));
         
         if (m_PlayerCoordinate != vNewPlayerCoordinate)
         {
             m_PlayerCoordinate = vNewPlayerCoordinate;
-            UpdateMaps();   // 플레이어 위치가 다르면 교체
+            UpdateMaps();
         }
     }
 
-    private void UpdateMaps()   // Coordinate 기반으로 Plane 위치 이동
+
+
+    private void UpdateMaps()
     {
         foreach (MapTile mapTile in m_Maps)
         {
-            // 반대쪽의 Plane을 그 반대쪽으로 옮겨야함
             int CoordX = (int)(mapTile.m_Coordinate.x - m_PlayerCoordinate.x);
             int CoordY = (int)(mapTile.m_Coordinate.y - m_PlayerCoordinate.y);
             if (Mathf.Abs(CoordX) >= (iListArraySize + 1) || Mathf.Abs(CoordY) >= (iListArraySize + 1))

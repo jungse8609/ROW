@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader = default;
+    [SerializeField] private InputReader m_InputReader = default;
 
     [SerializeField] private GameObject m_PausePanel;
     [SerializeField] private GameObject m_MainPanel;
@@ -52,7 +52,7 @@ public class PauseMenu : MonoBehaviour
         m_isPause = false;
         m_PausePanel.SetActive(false);
         m_MainPanel.SetActive(true);
-        _inputReader.EnableGameplayInput();
+        m_InputReader.EnableGameplayInput();
         Time.timeScale = 1f;
         m_LevelupEvent.Invoke();
     }
@@ -61,7 +61,7 @@ public class PauseMenu : MonoBehaviour
         m_isPause = true;
         m_PausePanel.SetActive(true);
         m_MainPanel.SetActive(false);
-        _inputReader.DisableAllInput();
+        m_InputReader.DisableAllInput();
         Time.timeScale = 0f;
     }
 }

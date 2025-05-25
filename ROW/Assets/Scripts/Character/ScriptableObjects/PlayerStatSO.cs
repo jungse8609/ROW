@@ -21,6 +21,9 @@ public class PlayerStatSO : ScriptableObject
     public int BulletCooltimeLevel = 0;
     public int ReloadCooltimeLevel = 0;
 
+
+    public static int PLAYERSTATCOUNT = 6;
+
     public void InitVariables()
     {
         MaxHp = 10.0f;
@@ -136,4 +139,7 @@ public struct LevelupStatDescription
     public Sprite sprite;
     public string title;
     public string description;
+
+    public static int TitleIndex = 0;
+    public static int DescriptionIndex = 0;
 };

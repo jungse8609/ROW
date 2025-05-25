@@ -9,8 +9,8 @@ public class TimerUI : MonoBehaviour
     private float m_fSec;
     private TextMeshProUGUI m_TextUI;
 
-    public 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
     void Start()
     {
         m_fTime = 0.0f;

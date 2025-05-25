@@ -8,7 +8,8 @@ public class LevelUpUI : MonoBehaviour
 {
     [SerializeField] private GameObject m_LevelupPanel;
     [SerializeField] private PlayerStatSO _playerStat;
-    [SerializeField] private Button[] _Buttons;
+    [SerializeField] private Button[] m_Buttons;
+
 
     private int[] m_iGeneratedStat;
 
@@ -22,7 +23,7 @@ public class LevelUpUI : MonoBehaviour
 
     private void GenerateRandomLevelupOption()  
     {
-        m_iGeneratedStat = GetRandomValues(0, 6, 3);  // 0~ 6 중복없이 3개 선택
+        m_iGeneratedStat = GetRandomValues(PlayerStatSO.PLAYERSTATCOUNT, m_Buttons.Length);
 
         for (int i = 0; i < 3; i++)
         {
@@ -30,15 +31,19 @@ public class LevelUpUI : MonoBehaviour
         }
     }
 
-    private void MatchStatAndUI(int ButtonIndex, int StatIndex)      // 선택한 버튼에 선택한 index에 맞는 설명 처리
+
+
+
+    private void MatchStatAndUI(int ButtonIndex, int StatIndex)
     {
         LevelupStatDescription desc = _playerStat.GetLevelupStatDescription(StatIndex);
 
-        _Buttons[ButtonIndex].GetComponentsInChildren<Image>()[1].sprite = desc.sprite; // 0 : button, 1: Icon
-
-        TextMeshProUGUI[] texts = _Buttons[ButtonIndex].GetComponentsInChildren<TextMeshProUGUI>();
+        // 0 : button, 1: Icon
+        TextMeshProUGUI[] texts = m_Buttons[ButtonIndex].GetComponentsInChildren<TextMeshProUGUI>(); 
         texts[0].text = desc.title;
         texts[1].text = desc.description;
+
+        m_Buttons[ButtonIndex].GetComponentsInChildren<Image>()[1].sprite = desc.sprite; 
     }
 
     public void Levelup(int _Buttonindex)       //Button의 OnClick으로 실행되는 함수
@@ -46,11 +51,11 @@ public class LevelUpUI : MonoBehaviour
         _playerStat.LevelupStat(m_iGeneratedStat[_Buttonindex]);
     } 
 
-    public int[] GetRandomValues(int min, int max, int count)
+    public int[] GetRandomValues(int max, int count)
     {
         // 선택할 수 있는 숫자의 리스트 생성
         List<int> availableValues = new List<int>();
-        for (int i = min; i <= max; i++)
+        for (int i = 0; i <= max; i++)
         {
             availableValues.Add(i);
         }
@@ -73,7 +78,6 @@ public class LevelUpUI : MonoBehaviour
         {
             Time.timeScale = 0f;
             m_LevelupPanel.SetActive(true);
-            //GenerateRandomLevelupOption();
         }
         else
         {
