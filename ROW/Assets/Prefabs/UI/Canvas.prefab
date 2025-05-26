@@ -290,7 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61f51f5a14a66d479394a784bf9a694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleScene: {fileID: 102900000, guid: ae5aecedbab2dfb44ba51703f9713ab0, type: 3}
 --- !u!1 &243755482445373434
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +302,7 @@ GameObject:
   - component: {fileID: 6472258829730829005}
   - component: {fileID: 7440643460413599316}
   m_Layer: 5
-  m_Name: Text _Description
+  m_Name: Text_Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1312,7 @@ GameObject:
   - component: {fileID: 6521474581742570783}
   - component: {fileID: 7521986735916045587}
   m_Layer: 5
-  m_Name: Text _Description
+  m_Name: Text_Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,7 +1969,7 @@ GameObject:
   - component: {fileID: 8300362154138815678}
   - component: {fileID: 2587636510823037422}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: PauseUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2991,7 +2990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61f51f5a14a66d479394a784bf9a694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleScene: {fileID: 102900000, guid: ae5aecedbab2dfb44ba51703f9713ab0, type: 3}
 --- !u!1 &5249351285355552806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4037,7 @@ GameObject:
   - component: {fileID: 2437773043047193287}
   - component: {fileID: 4804334008810623715}
   m_Layer: 5
-  m_Name: Text _Description
+  m_Name: Text_Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4602,25 +4600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78f48920b2c81640b6ac4cf6e7be14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 11400000, guid: b4016c837dcbc124d8f25a44eff47bf1, type: 2}
-  m_PausePanel: {fileID: 421333997802995328}
-  m_MainPanel: {fileID: 183324577923773671}
-  m_LevelupEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6449597791535842805}
-        m_TargetAssemblyTypeName: LevelUpUI, Assembly-CSharp
-        m_MethodName: Check_UIIsOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_isPause: 0
+  inputReader: {fileID: 11400000, guid: b4016c837dcbc124d8f25a44eff47bf1, type: 2}
+  pausePanel: {fileID: 421333997802995328}
+  mainPanel: {fileID: 183324577923773671}
 --- !u!114 &6449597791535842805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4633,10 +4615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf979960f63c014d9281dc2ac17bdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelupPanel: {fileID: 4207221449102500165}
-  _playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
-  _Buttons:
+  levelUpPanel: {fileID: 4207221449102500165}
+  playerStat: {fileID: 11400000, guid: fd2416fca9062524b9d16723e70fa2d6, type: 2}
+  buttons:
   - {fileID: 5355847015372543709}
   - {fileID: 6386820655040263769}
   - {fileID: 4722230045174440212}
-  m_isPause: 0

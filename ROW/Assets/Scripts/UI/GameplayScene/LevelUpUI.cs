@@ -6,49 +6,44 @@ using UnityEngine.UI;
 
 public class LevelUpUI : MonoBehaviour
 {
-    [SerializeField] private GameObject m_LevelupPanel;
-    [SerializeField] private PlayerStatSO _playerStat;
-    [SerializeField] private Button[] m_Buttons;
+    [SerializeField] private GameObject levelUpPanel;
+    [SerializeField] private PlayerStatSO playerStat;
+    [SerializeField] private Button[] buttons;
 
+    private int[] generatedStats;
 
-    private int[] m_iGeneratedStat;
-
-    public bool m_isPause = false;
-
-    void Start()
+    void Awake()
     {
-        m_LevelupPanel.SetActive(false);
-        m_isPause = false;
+        levelUpPanel.SetActive(false);
     }
 
     private void GenerateRandomLevelupOption()  
     {
-        m_iGeneratedStat = GetRandomValues(PlayerStatSO.PLAYERSTATCOUNT, m_Buttons.Length);
+        generatedStats = GetRandomValues(PlayerStatSO.PLAYERSTATCOUNT, buttons.Length);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            MatchStatAndUI(i, m_iGeneratedStat[i]);
+            MatchStatAndUI(i, generatedStats[i]);
         }
     }
 
-
-
-
     private void MatchStatAndUI(int ButtonIndex, int StatIndex)
     {
-        LevelupStatDescription desc = _playerStat.GetLevelupStatDescription(StatIndex);
+        LevelupStatDescription desc = playerStat.GetLevelupStatDescription(StatIndex);
 
-        // 0 : button, 1: Icon
-        TextMeshProUGUI[] texts = m_Buttons[ButtonIndex].GetComponentsInChildren<TextMeshProUGUI>(); 
-        texts[0].text = desc.title;
-        texts[1].text = desc.description;
+        TextMeshProUGUI title = buttons[ButtonIndex].transform.Find("Text_Title").GetComponent<TextMeshProUGUI>();
+        title.text = desc.title;
 
-        m_Buttons[ButtonIndex].GetComponentsInChildren<Image>()[1].sprite = desc.sprite; 
+        TextMeshProUGUI description = buttons[ButtonIndex].transform.Find("Text_Description").GetComponent<TextMeshProUGUI>();
+        description.text = desc.description;
+
+        Image image = buttons[ButtonIndex].transform.Find("Icon").GetComponent<Image>();
+        image.sprite = desc.sprite; 
     }
 
-    public void Levelup(int _Buttonindex)       //Button의 OnClick으로 실행되는 함수
+    public void Levelup(int buttonIndex) //Button의 OnClick으로 실행되는 함수
     {
-        _playerStat.LevelupStat(m_iGeneratedStat[_Buttonindex]);
+        playerStat.LevelupStat(generatedStats[buttonIndex]);
     } 
 
     public int[] GetRandomValues(int max, int count)
@@ -72,31 +67,16 @@ public class LevelUpUI : MonoBehaviour
         return new List<int>(selectedValues).ToArray(); // 배열로 변환하여 반환
     }
 
-    public void Check_UIIsOn()      //Level UI가 뜬 상태에서 ESC눌렀을 경우에 실행하는 함수
+    public void Pause()
     {
-        if (m_isPause == true)
-        {
-            Time.timeScale = 0f;
-            m_LevelupPanel.SetActive(true);
-        }
-        else
-        {
-            Resume_Levelup();
-        }
-    }
-
-    public void Pause_Levelup()
-    {
-        m_isPause = true;
-        m_LevelupPanel.SetActive(true);
         GenerateRandomLevelupOption();
-        Time.timeScale = 0f;
+        levelUpPanel.SetActive(true);
+        TimeManager.Instance.Pause();
     }
 
-    public void Resume_Levelup()
+    public void Resume()
     {
-        m_isPause = false;
-        Time.timeScale = 1f;
-        m_LevelupPanel.SetActive(false);
+        levelUpPanel.SetActive(false);
+        TimeManager.Instance.Resume();
     }
 }
