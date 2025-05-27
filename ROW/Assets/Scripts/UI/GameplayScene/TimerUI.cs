@@ -9,7 +9,7 @@ public class TimerUI : MonoBehaviour
     void Start()
     {
         textUI = gameObject.GetComponent<TextMeshProUGUI>();
-        Debug.Assert(textUI == null, "TimerUI: textUI references are missing.");
+        Debug.Assert(textUI != null, "TimerUI: textUI references are missing.");
     }
     void Update()
     {

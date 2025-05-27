@@ -27,37 +27,37 @@ public class LevelUpUI : MonoBehaviour
         }
     }
 
-    private void MatchStatAndUI(int ButtonIndex, int StatIndex)
+    private void MatchStatAndUI(int _buttonIndex, int _statIndex)
     {
-        LevelupStatDescription desc = playerStat.GetLevelupStatDescription(StatIndex);
+        LevelupStatDescription desc = playerStat.GetLevelupStatDescription(_statIndex);
 
-        TextMeshProUGUI title = buttons[ButtonIndex].transform.Find("Text_Title").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI title = buttons[_buttonIndex].transform.Find("Text_Title").GetComponent<TextMeshProUGUI>();
         title.text = desc.title;
 
-        TextMeshProUGUI description = buttons[ButtonIndex].transform.Find("Text_Description").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI description = buttons[_buttonIndex].transform.Find("Text_Description").GetComponent<TextMeshProUGUI>();
         description.text = desc.description;
 
-        Image image = buttons[ButtonIndex].transform.Find("Icon").GetComponent<Image>();
+        Image image = buttons[_buttonIndex].transform.Find("Icon").GetComponent<Image>();
         image.sprite = desc.sprite; 
     }
 
-    public void Levelup(int buttonIndex) //Button의 OnClick으로 실행되는 함수
+    public void Levelup(int _buttonIndex) //Button의 OnClick으로 실행되는 함수
     {
-        playerStat.LevelupStat(generatedStats[buttonIndex]);
+        playerStat.LevelupStat(generatedStats[_buttonIndex]);
     } 
 
-    public int[] GetRandomValues(int max, int count)
+    public int[] GetRandomValues(int _max, int _count)
     {
         // 선택할 수 있는 숫자의 리스트 생성
         List<int> availableValues = new List<int>();
-        for (int i = 0; i <= max; i++)
+        for (int i = 0; i <= _max; i++)
         {
             availableValues.Add(i);
         }
 
         // 랜덤 값 선택
         HashSet<int> selectedValues = new HashSet<int>();
-        while (selectedValues.Count < count && availableValues.Count > 0)
+        while (selectedValues.Count < _count && availableValues.Count > 0)
         {
             int randomIndex = UnityEngine.Random.Range(0, availableValues.Count);
             selectedValues.Add(availableValues[randomIndex]);

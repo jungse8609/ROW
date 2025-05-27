@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6252973043322271960}
   - component: {fileID: 3541725447336446429}
   - component: {fileID: 1508673815110665341}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RandomGun 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1293,9 +1293,17 @@ PrefabInstance:
       value: MapController
       objectReference: {fileID: 0}
     - target: {fileID: 1409172244882335432, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1250679395}
+    - target: {fileID: 1409172244882335432, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1250679395}
+    - target: {fileID: 1409172244882335432, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
+      propertyPath: debugPlane
+      value: 
+      objectReference: {fileID: 836322441}
     - target: {fileID: 1409172244882335432, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
       propertyPath: m_DebugPlane
       value: 
@@ -1306,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8976280916093241514, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8976280916093241514, guid: 64666c6352adf454a99c7e985e8c2581, type: 3}
       propertyPath: m_LocalPosition.z

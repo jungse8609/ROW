@@ -1,188 +1,115 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-
-using Unity.AI.Navigation;
-
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class MapTile
+public class MapTile : MonoBehaviour
 {
-    public Vector2 m_Coordinate { 
-        get { return m_vCoordinate; } 
-        set { m_vCoordinate = value; } 
+    public Vector2Int Coordinate { 
+        get => coordinate;
+        set
+        {
+            coordinate = value;
+            Relocation();
+        }
     }
 
-    private Vector2 m_vCoordinate = Vector2.zero;
-    private GameObject m_Plane = null;
-    private List<GameObject> m_Environments = new List<GameObject>();      // 환경 오브젝트 보관용
+    private Vector2Int coordinate = Vector2Int.zero;
+    private GameObject plane;
+    private List<GameObject> mapObjects = new List<GameObject>();      // 환경 오브젝트 보관용
 
-    public MapTile(Vector2 _Coordinate)
+    private const int PositionYBias = -2;
+    private const int GenerateRandomMin = 3;
+    private const int GenerateRandomMax = 7;
+    private const float CollisionRadius = 2f;
+    private const int MaxOverlapChecks = 2;
+
+    private void Awake()
     {
-        m_vCoordinate = _Coordinate;    
+        GameObject planePrefab = Resources.Load("Prefabs/Plane") as GameObject;
+        Debug.Assert(planePrefab != null, "MapTile : Plane prefab not found");
 
-        // 충돌 검사 문제인지 Terrain부터 이동하면 생성이 안됨
-        GenerateObjects();
-
-        GameObject Plane = Resources.Load("Prefabs/Plane") as GameObject;
-
-        if(null == Plane)
-        {
-            Debug.Log("MapTile : Resources.Load error");
-        }
-
-        m_Plane = MonoBehaviour.Instantiate(Plane, CoordinateToPosition(), Quaternion.identity);
-
-        if (null == m_Plane)
-        {
-            Debug.Log("MapTile : Instantiate error");
-        }
-
+        plane = Instantiate(planePrefab, transform);    // Instantiate는 null을 반환하지 않음 -> 기존 Log 지움
+        plane.transform.localPosition = new Vector3(0, -1f, 0);
     }
 
-    public void Relocation(int CoordX, int CoordY)
+    public void Relocation()
     {
-        Vector2 Before = new Vector2(m_vCoordinate.x, m_vCoordinate.y);
-        if(CoordX >= (MapController.iListArraySize+1))
-        {
-            m_vCoordinate.x -= (MapController.iListArraySize * 2 + 1);
-        }
-        else if(CoordX <= -(MapController.iListArraySize + 1))
-        {
-            m_vCoordinate.x += (MapController.iListArraySize * 2 + 1);
-        }
-
-        if(CoordY >= (MapController.iListArraySize + 1))
-        {
-            m_vCoordinate.y -= (MapController.iListArraySize * 2 + 1);
-        }
-        else if (CoordY <= -(MapController.iListArraySize + 1))
-        {
-            m_vCoordinate.y += (MapController.iListArraySize * 2 + 1);
-        }
-
-        GenerateObjects();
-
-        m_Plane.GetComponent<Transform>().position = CoordinateToPosition();
+        transform.position = MapController.CoordinateToPosition(coordinate);
+        GenerateMapObjects();
     }
 
-
-
-
-    public void GenerateNavMesh()
+    private void GenerateMapObjects()
     {
-        NavMeshSurface surface = m_Plane.GetComponent<NavMeshSurface>();
-        surface.RemoveData();
-        surface.BuildNavMesh();
-
-        //foreach (var Environment in m_Environments)
-        //{
-        //    surface = Environment.GetComponent<NavMeshSurface>();
-        //    surface.RemoveData();
-        //    surface.BuildNavMesh();
-        //}
-    }
-
-    private Vector3 CoordinateToPosition()
-    {
-        return new Vector3(m_vCoordinate.x * 20, -1f, m_vCoordinate.y * 20);
-    }
-
-    static int POSITION_Y_BIAS = -2;
-    static int GENERATE_RANDOM_MIN = 3;
-    static int GENERATE_RANDOM_MAX = 7;
-
-    private void GenerateObjects()
-    {
-        foreach(GameObject obj in m_Environments)
+        foreach(GameObject obj in mapObjects)
         {
-            MonoBehaviour.Destroy(obj);
+            Destroy(obj);
         }
-        m_Environments.Clear();
+        mapObjects.Clear();
 
-        int RandEnvironmentCount = UnityEngine.Random.Range(GENERATE_RANDOM_MIN, GENERATE_RANDOM_MAX);
+        int randomMapObjectCount = Random.Range(GenerateRandomMin, GenerateRandomMax);
 
-        for(int i=0; i< RandEnvironmentCount; ++i)
+        for(int i=0; i< randomMapObjectCount; ++i)
         {
-            bool IsPositionFound = false;
-            int EscapeCount = 0;
-
-            while(!IsPositionFound && EscapeCount <= 10)
+            for(int escapeCount = 0; escapeCount < 10; ++i)
             {
-                ++EscapeCount;
-
-                float PositionX = UnityEngine.Random.Range(-MapController.PLANESIZE, MapController.PLANESIZE + 1);
-                float PositionZ = UnityEngine.Random.Range(-MapController.PLANESIZE, MapController.PLANESIZE + 1);
-
-                Vector3 vRandomPosition = new Vector3(PositionX, 1, PositionZ) + CoordinateToPosition();
-
-                IsPositionFound = IsPositionOccupied(vRandomPosition);
-
-                if (!IsPositionFound) // if find Position
+                float positionX = Random.Range(-MapController.PlaneSize / 2, MapController.PlaneSize / 2 + 1);
+                float positionZ = Random.Range(-MapController.PlaneSize / 2, MapController.PlaneSize / 2 + 1);
+                
+                Vector3 worldPosition = new Vector3(positionX, 0, positionZ) + transform.position;
+                if (!IsPositionOccupied(worldPosition)) // if find _position
                 {
-                    vRandomPosition.y = POSITION_Y_BIAS;
-                    GameObject obj = MonoBehaviour.Instantiate(SelectPrefabs(), vRandomPosition, RandomRotation());
-                    m_Environments.Add(obj);
-                    break;
+                    GameObject obj = Instantiate(SelectPrefabs(), transform);
+                    obj.transform.localPosition = new Vector3(positionX, PositionYBias, positionZ);
+                    obj.transform.rotation = RandomRotation();
 
+                    mapObjects.Add(obj);
+                    break;
                 }
             }
         }
     }
-
-    private bool IsPositionOccupied(Vector3 Position)
+    private bool IsPositionOccupied(Vector3 _position)
     {
         // 해당 위치에 충돌체가 있는지 체크
-        Collider[] colliders = Physics.OverlapSphere(Position, 2f);
-        return colliders.Length > 0; // 충돌체가 있으면 true 반환
+        Physics.SyncTransforms(); // 콜라이더들 동기화
+        Collider[] results = new Collider[MaxOverlapChecks];    // 2개면 충분
+        int hits = Physics.OverlapSphereNonAlloc(_position, CollisionRadius, results);
+        return hits > 1; // 충돌체가 있으면 true 반환 // Plane과는 항상 충돌하기때문에 1
     }
-
-    private GameObject SelectPrefabs()  // Prefab 결정해서 전달
+    private GameObject SelectPrefabs()  // prefab 결정해서 전달
     {
-        int iRand = UnityEngine.Random.Range(0, 5); // 0 ~ 4
+        int rand = UnityEngine.Random.Range(0, 5); // 0 ~ 4
 
-        string fPath = "Prefabs/";
-        switch(iRand)
+        string path = "Prefabs/";
+        switch(rand)
         {
             case 0:
-                fPath += "Cabin";
+                path += "Cabin";
                 break;
             case 1:
-                fPath += "Rock4";
+                path += "Rock4";
                 break;
             case 2:
-                fPath += "Shrub";
+                path += "Shrub";
                 break;
             case 3:
-                fPath += "Tree";
+                path += "Tree";
                 break;
             case 4:
-                fPath += "Tree_Chopped";
+                path += "Tree_Chopped";
                 break;
             default:
                 break;
         }
 
-        GameObject Prefab = Resources.Load<GameObject>(fPath);
-        if (Prefab == null)
-        {
-            Debug.Log("MapTile : Environment Object Resourece Load error");
-
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
-
-        return Prefab;
+        GameObject prefab = Resources.Load<GameObject>(path);
+        Debug.Assert(prefab != null, "MapTile : MapObject Resourece Load error");
+      
+        return prefab;
     }
-    private Quaternion RandomRotation()     // y축 90의 배수 회전 값 랜덤 선택
+    private Quaternion RandomRotation() // y축 90의 배수 회전 값 랜덤 선택
     {
         // 90도, 180도, 270도, 360도 중 랜덤 선택
-        float[] PossibleRotations = { 90f, 180f, 270f, 360f };
-        int RandomIndex = UnityEngine.Random.Range(0, PossibleRotations.Length);
-        return Quaternion.Euler(0, PossibleRotations[RandomIndex], 0);
+        float[] angles = { 90f, 180f, 270f, 360f };
+        return Quaternion.Euler(0, angles[Random.Range(0, angles.Length)], 0);
     }
 }

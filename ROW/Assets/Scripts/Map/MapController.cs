@@ -1,72 +1,92 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    private List<MapTile> m_Maps = new List<MapTile>();
-
     [SerializeField]
-    public GameObject m_DebugPlane;
-
+    private GameObject debugPlane;
     [SerializeField]
-    public GameObject m_Player = null;
-    private Vector2 m_PlayerCoordinate = Vector2.zero;  // 이전 플레이어 Coordinate
+    private GameObject player;
 
-    static public int iListArraySize = 2;
-    static public int PLANESIZE = 20;
+    private Vector2Int playerCoordinate = Vector2Int.zero;  // 플레이어의 이전 좌표
+    private List<MapTile> maps = new List<MapTile>();
+    private NavMeshSurface navMeshSurface;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public const int ListArraySize = 2;
+    public const int PlaneSize = 20;
+
     void Start()
     {
-        Destroy(m_DebugPlane);
+        navMeshSurface = GetComponent<NavMeshSurface>();
+        Destroy(debugPlane);
 
-        for(int i=-iListArraySize; i<=iListArraySize; ++i)
+        for (int x = -ListArraySize; x <= ListArraySize; ++x)
         {
-            for(int j=-iListArraySize;j<=iListArraySize; ++j)
+            for (int y = -ListArraySize; y <= ListArraySize; ++y)
             {
-                MapTile newMapTile = new MapTile(new Vector2(i, j));
-                m_Maps.Add(newMapTile);
+                GameObject obj = new GameObject("MapTile");
+                obj.transform.parent = transform;
+
+                MapTile mapTile = obj.AddComponent<MapTile>();
+                mapTile.Coordinate = new Vector2Int(x, y);
+
+                maps.Add(mapTile);
             }
         }
 
-        m_Maps[0].GenerateNavMesh();
-        //foreach (MapTile mapTile in m_Maps)
-        //{
-        //    mapTile.GenerateNavMesh();
-        //}
-
+        UpdateNavMesh();
     }
 
     void Update()
     {
-        CalcuatePlayerCoordinate();
+        UpdatePlayerCoordinate();
     }
 
-    private void CalcuatePlayerCoordinate() {
-        Vector3 vPosition = m_Player.GetComponent<Transform>().position;
-        Vector2 vNewPlayerCoordinate = new Vector2((int)(vPosition.x/ PLANESIZE), (int)(vPosition.z/PLANESIZE));
-        
-        if (m_PlayerCoordinate != vNewPlayerCoordinate)
+    private void UpdatePlayerCoordinate()
+    {
+        Vector3 position = player.transform.position;
+        Vector2Int newCoordinate = new Vector2Int((int)(position.x / PlaneSize), (int)(position.z / PlaneSize));
+
+        if (playerCoordinate != newCoordinate)
         {
-            m_PlayerCoordinate = vNewPlayerCoordinate;
+            playerCoordinate = newCoordinate;
             UpdateMaps();
         }
     }
 
-
-
     private void UpdateMaps()
     {
-        foreach (MapTile mapTile in m_Maps)
+        foreach (MapTile mapTile in maps)
         {
-            int CoordX = (int)(mapTile.m_Coordinate.x - m_PlayerCoordinate.x);
-            int CoordY = (int)(mapTile.m_Coordinate.y - m_PlayerCoordinate.y);
-            if (Mathf.Abs(CoordX) >= (iListArraySize + 1) || Mathf.Abs(CoordY) >= (iListArraySize + 1))
-            {
-                mapTile.Relocation(CoordX, CoordY);
+            int coordX = (int)(mapTile.Coordinate.x - playerCoordinate.x);
+            int coordY = (int)(mapTile.Coordinate.y - playerCoordinate.y);
 
+            if (Mathf.Abs(coordX) > ListArraySize)
+            {
+                mapTile.Coordinate = new Vector2Int(
+                    playerCoordinate.x + (coordX > 0 ? -ListArraySize : ListArraySize),
+                    mapTile.Coordinate.y);
+            }
+            if (Mathf.Abs(coordY) > ListArraySize)
+            {
+                mapTile.Coordinate = new Vector2Int(
+                    mapTile.Coordinate.x,
+                    playerCoordinate.y + (coordY > 0 ? -ListArraySize : ListArraySize));
             }
         }
-        m_Maps[0].GenerateNavMesh();
+
+        UpdateNavMesh();
+    }
+
+    private void UpdateNavMesh()
+    {
+        navMeshSurface.BuildNavMesh();
+    }
+
+    public static Vector3 CoordinateToPosition(Vector2Int _coordinate)
+    {
+        return new Vector3(_coordinate.x * PlaneSize, 0f, _coordinate.y * PlaneSize);
     }
 }
+

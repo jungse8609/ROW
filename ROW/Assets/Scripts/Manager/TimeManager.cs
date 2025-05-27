@@ -8,12 +8,11 @@ using UnityEngine.Splines.Interpolators;
 
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager Instance { get { init(); return s_instance; } }
+    public static TimeManager Instance { get { Init(); return s_instance; } }
     private static TimeManager s_instance;
-
     private int pauseCount = 0;
-    
-    private static void init()
+
+    private static void Init()
     {
         if(s_instance == null)
         {

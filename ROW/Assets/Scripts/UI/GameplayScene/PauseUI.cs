@@ -11,7 +11,7 @@ public class PauseUI : MonoBehaviour
 
     void Awake()
     {
-        Debug.Assert(inputReader == null || pausePanel != null || mainPanel != null, "PauseUI: One or more panel references are missing.");
+        Debug.Assert(inputReader != null && pausePanel != null && mainPanel != null, "PauseUI: One or more panel references are missing.");
 
         pausePanel.SetActive(false);
     }
