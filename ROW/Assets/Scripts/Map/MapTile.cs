@@ -41,7 +41,7 @@ public class MapTile : MonoBehaviour
     {
         foreach(GameObject obj in mapObjects)
         {
-            Destroy(obj);
+            MapObjectPool.Instance.Enqueue(obj);
         }
         mapObjects.Clear();
 
@@ -57,7 +57,8 @@ public class MapTile : MonoBehaviour
                 Vector3 worldPosition = new Vector3(positionX, 0, positionZ) + transform.position;
                 if (!IsPositionOccupied(worldPosition)) // if find _position
                 {
-                    GameObject obj = Instantiate(SelectPrefabs(), transform);
+                    GameObject obj = MapObjectPool.Instance.SelectRandom();
+                    obj.transform.parent = transform;
                     obj.transform.localPosition = new Vector3(positionX, PositionYBias, positionZ);
                     obj.transform.rotation = RandomRotation();
 
@@ -67,6 +68,7 @@ public class MapTile : MonoBehaviour
             }
         }
     }
+
     private bool IsPositionOccupied(Vector3 _position)
     {
         // 해당 위치에 충돌체가 있는지 체크
@@ -75,37 +77,7 @@ public class MapTile : MonoBehaviour
         int hits = Physics.OverlapSphereNonAlloc(_position, CollisionRadius, results);
         return hits > 1; // 충돌체가 있으면 true 반환 // Plane과는 항상 충돌하기때문에 1
     }
-    private GameObject SelectPrefabs()  // prefab 결정해서 전달
-    {
-        int rand = UnityEngine.Random.Range(0, 5); // 0 ~ 4
 
-        string path = "Prefabs/";
-        switch(rand)
-        {
-            case 0:
-                path += "Cabin";
-                break;
-            case 1:
-                path += "Rock4";
-                break;
-            case 2:
-                path += "Shrub";
-                break;
-            case 3:
-                path += "Tree";
-                break;
-            case 4:
-                path += "Tree_Chopped";
-                break;
-            default:
-                break;
-        }
-
-        GameObject prefab = Resources.Load<GameObject>(path);
-        Debug.Assert(prefab != null, "MapTile : MapObject Resourece Load error");
-      
-        return prefab;
-    }
     private Quaternion RandomRotation() // y축 90의 배수 회전 값 랜덤 선택
     {
         // 90도, 180도, 270도, 360도 중 랜덤 선택
